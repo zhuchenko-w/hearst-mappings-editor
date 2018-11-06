@@ -1,0 +1,32 @@
+﻿@using HearstMappingsEditor.Models
+
+@model CostCenterMappingRefs
+
+<label for="nm-dept">
+    Dept
+    <select class="filterable-select dept new" id="nm-dept">
+        @foreach (var item in Model.DimDepts)
+        {
+            <option value="@item.DeptID">@item.Dept</option>
+        }
+    </select>
+</label>
+<label for="nm-print-digital">
+    PrintDigital
+    <select class="filterable-select dept-print-digital new" id="nm-print-digital">
+        @foreach (var item in Model.PrintDigitals)
+        {
+            <option value="@item">@item</option>
+        }
+    </select>
+</label>
+<label for="nm-cost-center">
+    CostCenterDesc
+    <select class="filterable-select cost-center new" id="nm-cost-center">
+        @foreach (var item in Model.DimCostCenters)
+        {
+            <option value="@item.CostCenterID">@item.CostCenterDesc</option>
+        }
+    </select>
+</label>
+

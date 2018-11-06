@@ -1,0 +1,37 @@
+﻿@using HearstMappingsEditor.Data.Models
+@using HearstMappingsEditor.Common
+
+@model DimItem
+
+@{
+    var notSet = Constants.NotSet;
+}
+
+<tr id="@(Model.ItemID)">
+    <td class="actions-col">
+        <a class="btn btn-danger btn-sm btn-remove" data-toggle="modal" data-target="#confirmation-modal" data-confirm-text="Remove selected row?" data-confirm-btn-text="Remove" data-confirm-action="remove" data-is-table-row="1"></a>
+    </td>
+    <td><span class="readonly-cell uneditable item-id">@Model.ItemID</span></td>
+
+    <td>
+        @Html.EditorFor(p=>p.UAN,
+            new {
+                htmlAttributes = new
+                {
+                    @Value = Model.UAN,
+                    @class = "form-control text-input text-input-cell required uan",
+                    @type = "text",
+                    maxlength = "200",
+                    placeholder = notSet,
+                    data_initial = Model.UAN,
+                    data_val = Model.UAN
+                }
+            })
+    </td>
+
+    <td><span class="readonly-cell wgo uneditable" data-val="@Model.WGO">@(string.IsNullOrEmpty(Model.WGO) ? notSet : Model.WGO)</span></td>
+    <td><span class="readonly-cell ic3p uneditable" data-val="@Model.Ic3p">@(string.IsNullOrEmpty(Model.Ic3p) ? notSet : Model.Ic3p)</span></td>
+    <td><span class="readonly-cell item-sign" data-select="signs" data-val="@Model.ItemSign">@(Model.ItemSign.HasValue ? Model.ItemSign.Value + "" : notSet)</span></td>
+    <td><span class="readonly-cell sign-mr" data-select="signs" data-val="@Model.SignMR">@(Model.SignMR.HasValue ? Model.SignMR.Value + "" : notSet)</span></td>
+    <td><span class="readonly-cell create-date uneditable">@(Model.CreateDate.HasValue ? Model.CreateDate.Value.ToString("yyyy.MM.dd HH:mm") : notSet)</span></td>
+</tr>

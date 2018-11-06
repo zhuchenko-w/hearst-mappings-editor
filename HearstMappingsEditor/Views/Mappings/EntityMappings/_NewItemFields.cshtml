@@ -1,0 +1,23 @@
+﻿@using HearstMappingsEditor.Models
+
+@model EntityMappingRefs
+
+<label for="nm-perimeter">
+    PerimeterCode
+    <select class="filterable-select perimeter new" id="nm-perimeter">
+        @foreach (var item in Model.Perimeters)
+        {
+            <option value="@item.PerimeterID">@item.PerimeterCode</option>
+        }
+    </select>
+</label>
+<label for="nm-entity">
+    EntityCode
+    <select class="filterable-select entity new" id="nm-entity">
+        @foreach (var item in Model.DimEntities)
+        {
+            <option value="@item.EntityID">@item.EntityCode</option>
+        }
+    </select>
+</label>
+

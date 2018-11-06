@@ -1,0 +1,17 @@
+﻿@using HearstMappingsEditor.Models
+
+@model DimPLKindRefs
+
+<label for="nm-pl-kind-name">
+    PLKindName
+    <input id="nm-pl-kind-name" type="text" class="form-control text-input pl-kind-name new" placeholder="PLKindName" maxlength="500" name="plKindName">
+</label>
+<label for="nm-pl-group">
+    PLGroup
+    <select class="filterable-select pl-group new" id="nm-pl-group">
+        @foreach (var dplg in Model.DimPLGroups)
+        {
+            <option value="@dplg.PLGroupID">@dplg.PLGroupName</option>
+        }
+    </select>
+</label>

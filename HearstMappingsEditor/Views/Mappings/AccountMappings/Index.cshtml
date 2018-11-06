@@ -1,0 +1,113 @@
+﻿@using HearstMappingsEditor.Models
+@using HearstMappingsEditor.Common
+@using HearstMappingsEditor.Data.Models
+
+@model MappingFilterableViewModel<AccountMappingViewModel, AccountMappingFilter, AccountMappingRestriction, AccountMappingRefs>
+
+@{
+    ViewBag.Title = "Account Mapping";
+    var controller = "AccountMappings";
+    var notSelected = Constants.NotSelected;
+}
+
+@section filters {
+    @{Html.RenderPartial("_Filters", Model.Refs);}
+}
+
+@section columnTitles {
+    <th>RowId</th>
+    <th>DeptCode</th>
+    <th>ItemUAN</th>
+    <th>PrintDigital</th>
+    <th>AccountGroupDesc</th>
+    <th>AccountCode</th>
+    <th>ProductCode</th>
+    <th>ChannelCode</th>
+    <th>SignMapping</th>
+    <th>SignPL</th>
+}
+
+@section items {
+    @{Html.RenderPartial("_List", new Tuple<IList<AccountMappingViewModel>, IList<AccountMappingRestriction>>(Model.MappingData.Mappings, Model.Restrictions));}
+}
+
+@section newItemFields {
+    @{Html.RenderPartial("_NewItemFields", Model.Refs);}
+}
+
+@section refs {
+    <select class="filterable-select account-group">
+        <option value="null">@notSelected</option>
+        @foreach (var item in Model.Refs.AccountGroups)
+        {
+            <option value="@item.AccountGroupID">@item.AccountGroupDesc</option>
+        }
+    </select>
+    <select class="filterable-select dept">
+        <option value="null">@notSelected</option>
+        @foreach (var item in Model.Refs.Depts)
+        {
+            <option value="@item.DeptID">@item.Dept</option>
+        }
+    </select>
+    <select class="filterable-select sign-pl">
+        <option value="null">@notSelected</option>
+        @foreach (var item in Model.Refs.SignPLs)
+        {
+            <option value="@item">@item</option>
+        }
+    </select>
+    <select class="filterable-select sign-mapping">
+        <option value="null">@notSelected</option>
+        @foreach (var item in Model.Refs.SignMappings)
+        {
+            <option value="@item">@item</option>
+        }
+    </select>
+    <select class="filterable-select account">
+        @foreach (var item in Model.Refs.Accounts)
+        {
+            <option value="@item.AccountID">@($"{item.AccountCode} ({item.AccountDesc})")</option>
+        }
+    </select>
+    <select class="filterable-select account-print-digital">
+        @foreach (var item in Model.Refs.PrintDigitals)
+        {
+            <option value="@item">@item</option>
+        }
+    </select>
+    <select class="filterable-select product">
+        @foreach (var item in Model.Refs.Products)
+        {
+            <option value="@item.ProductID">@($"{item.ProductCode} ({item.ProductDesc})")</option>
+        }
+    </select>
+    <select class="filterable-select channel">
+        @foreach (var item in Model.Refs.Channels)
+        {
+            <option value="@item.ChannelID">@($"{item.ChannelCode} ({item.ChannelDesc})")</option>
+        }
+    </select>
+    <select class="filterable-select item">
+        @foreach (var item in Model.Refs.Items)
+        {
+            <option value="@item.ItemID">@item.UAN</option>
+        }
+    </select>
+}
+
+@section scripts {
+    @Scripts.Render("~/bundles/mapping")
+    <script>
+        var saveUrl = '@(Url.Action("Save", controller))';
+        var getListUrl = '@(Url.Action("GetList", controller))';
+        var getListItemUrl = '@(Url.Action("GetListItem", controller))';
+        var exportUrl = '@(Url.Action("Export", controller))';
+        var excelFileName = '@(Constants.ExportToExcelAccountMappingFileName)';
+        var initialSyncState = @((Model.MappingData.IsSynced).ToString().ToLower());
+        var initialLoadPageSize = @Model.InitialLoadPageSize;
+        var pageSize = @Model.PageSize;
+        @(string.IsNullOrEmpty(Model.Error)?"": $"showNotification('Error', '{Model.Error}');")
+    </script>
+    @Scripts.Render("~/bundles/mapping/accounts")
+}

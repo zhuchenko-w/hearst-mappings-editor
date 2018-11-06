@@ -1,0 +1,58 @@
+﻿@using HearstMappingsEditor.Models
+@using HearstMappingsEditor.Data.Models
+@using HearstMappingsEditor.Common
+
+@model DimProjectRefs
+
+@{
+    var notSelected = Constants.NotSelected;
+}
+
+<tr class="filters">
+    <th class="actions-col"></th>
+    <th></th>
+    <th><input type="text" class="form-control text-filter text-input project-code" placeholder="Any" data-previous-val=""></th>
+    <th>
+        <select data-placeholder="Any" class="filterable-select multi project-group">
+            <option value="@notSelected">@notSelected</option>
+            @foreach (var pg in Model.ProjectGroups)
+            {
+                <option value="@pg">@pg</option>
+            }
+        </select>
+    </th>
+    <th><input type="text" class="form-control text-filter text-input management-project" placeholder="Any" data-previous-val=""></th>
+    <th><input type="text" class="form-control text-filter text-input management-parent" placeholder="Any" data-previous-val=""></th>
+    <th><input type="text" class="form-control text-filter text-input management-brand" placeholder="Any" data-previous-val=""></th>
+    <th>
+        <select data-placeholder="Any" class="filterable-select multi print-digital">
+            @foreach (var pd in Model.PrintDigitals)
+            {
+                <option value="@pd">@pd</option>
+            }
+        </select>
+    </th>
+    <th><input type="text" class="form-control text-filter text-input type" placeholder="Any" data-previous-val=""></th>
+    <th><input type="text" class="form-control text-filter text-input description" placeholder="Any" data-previous-val=""></th>
+    <th><input type="text" class="form-control text-filter text-input c1-hyp-code" placeholder="Any" data-previous-val=""></th>
+    <th><input type="text" class="form-control text-filter text-input c2-hyp-code-new" placeholder="Any" data-previous-val=""></th>
+    <th><input type="text" class="form-control text-filter text-input c2-management" placeholder="Any" data-previous-val=""></th>
+    <th></th>
+</tr>
+
+<tr>
+    <th class="actions-col"></th>
+    <th><span class="sort unsorted" data-sort-type="@((int)DimProjectSortTypes.Id)"></span></th>
+    <th><span class="sort unsorted" data-sort-type="@((int)DimProjectSortTypes.ProjectCode)"></span></th>
+    <th><span class="sort unsorted" data-sort-type="@((int)DimProjectSortTypes.ProjectGroup)"></span></th>
+    <th><span class="sort unsorted" data-sort-type="@((int)DimProjectSortTypes.ManagementProject)"></span></th>
+    <th><span class="sort unsorted" data-sort-type="@((int)DimProjectSortTypes.ManagementParent)"></span></th>
+    <th><span class="sort unsorted" data-sort-type="@((int)DimProjectSortTypes.ManagementBrand)"></span></th>
+    <th><span class="sort unsorted" data-sort-type="@((int)DimProjectSortTypes.PrintDigital)"></span></th>
+    <th><span class="sort unsorted" data-sort-type="@((int)DimProjectSortTypes.Type)"></span></th>
+    <th><span class="sort unsorted" data-sort-type="@((int)DimProjectSortTypes.Description)"></span></th>
+    <th><span class="sort unsorted" data-sort-type="@((int)DimProjectSortTypes.C1HypCode)"></span></th>
+    <th><span class="sort unsorted" data-sort-type="@((int)DimProjectSortTypes.C2HypCodeNew)"></span></th>
+    <th><span class="sort unsorted" data-sort-type="@((int)DimProjectSortTypes.C2Management)"></span></th>
+    <th><span class="sort unsorted" data-sort-type="@((int)DimProjectSortTypes.CreateDate)"></span></th>
+</tr>

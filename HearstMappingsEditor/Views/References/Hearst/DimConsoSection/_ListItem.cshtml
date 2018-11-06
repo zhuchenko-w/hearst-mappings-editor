@@ -1,0 +1,47 @@
+﻿@using HearstMappingsEditor.Data.Models
+@using HearstMappingsEditor.Common
+
+@model DimConsoSection
+
+@{
+    var notSet = Constants.NotSet;
+}
+
+<tr id="@(Model.ConsoSectionID)">
+    <td class="actions-col">
+        <a class="btn btn-danger btn-sm btn-remove" data-toggle="modal" data-target="#confirmation-modal" data-confirm-text="Remove selected row?" data-confirm-btn-text="Remove" data-confirm-action="remove" data-is-table-row="1"></a>
+    </td>
+    <td><span class="readonly-cell uneditable conso-section-id">@Model.ConsoSectionID</span></td>
+    <td>
+        @Html.EditorFor(p => p.ConsoSectionDesc,
+                      new
+                      {
+                          htmlAttributes = new
+                          {
+                              @Value = Model.ConsoSectionDesc,
+                              @class = "form-control text-input text-input-cell conso-section-desc",
+                              @type = "text",
+                              maxlength = "50",
+                              placeholder = notSet,
+                              data_initial = Model.ConsoSectionDesc,
+                              data_val = Model.ConsoSectionDesc
+                          }
+                      })
+    </td>
+    <td>
+        @Html.EditorFor(p => p.ConsoSectionCode,
+                      new
+                      {
+                          htmlAttributes = new
+                          {
+                              @Value = Model.ConsoSectionCode,
+                              @class = "form-control text-input text-input-cell conso-section-code",
+                              @type = "text",
+                              maxlength = "50",
+                              placeholder = notSet,
+                              data_initial = Model.ConsoSectionCode,
+                              data_val = Model.ConsoSectionCode
+                          }
+                      })
+    </td>
+</tr>

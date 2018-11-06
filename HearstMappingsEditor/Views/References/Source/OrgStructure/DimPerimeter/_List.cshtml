@@ -1,0 +1,17 @@
+﻿@using HearstMappingsEditor.Data.Models
+
+@model IList<DimPerimeter>
+
+@if (Model.Any())
+{
+    foreach (var item in Model)
+    {
+        Html.RenderPartial("_ListItem", item);
+    }
+}
+else
+{
+    <tr class="nothing-found">
+        <td colspan="6">Nothing found</td>
+    </tr>
+}

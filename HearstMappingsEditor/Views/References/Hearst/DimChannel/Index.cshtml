@@ -1,0 +1,44 @@
+﻿@using HearstMappingsEditor.Models
+@using HearstMappingsEditor.Common
+@using HearstMappingsEditor.Data.Models
+
+@model ReferencesFilterableViewModel<DimChannel, DimChannelFilter>
+
+@{
+    ViewBag.Title = "DimChannel Reference";
+    var controller = "DimChannel";
+}
+
+@section filters {
+    @{Html.RenderPartial("_Filters");}
+}
+
+@section columnTitles {
+    <th>ChannelID</th>
+    <th>ChannelDesc</th>
+    <th>ChannelCode</th>
+    <th>CreateDate</th>
+}
+
+@section items {
+    @{Html.RenderPartial("_List", Model.ReferenceItems);}
+}
+
+@section newItemFields {
+    @{Html.RenderPartial("_NewItemFields");}
+}
+
+@section scripts {
+    @Scripts.Render("~/bundles/refs")
+    <script>
+        var saveUrl = '@(Url.Action("Save", controller))';
+        var getListUrl = '@(Url.Action("GetList", controller))';
+        var getListItemUrl = '@(Url.Action("GetListItem", controller))';
+        var exportUrl = '@(Url.Action("Export", controller))';
+        var excelFileName = '@(Constants.ExportToExcelDimChannelFileName)';
+        var initialLoadPageSize = @Model.InitialLoadPageSize;
+        var pageSize = @Model.PageSize;
+        @(string.IsNullOrEmpty(Model.Error)?"": $"showNotification('Error', '{Model.Error}');")
+    </script>
+    @Scripts.Render("~/bundles/refs/hearst/dimChannel")
+}

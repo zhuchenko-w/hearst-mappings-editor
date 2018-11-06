@@ -1,0 +1,48 @@
+﻿@using HearstMappingsEditor.Data.Models
+@using HearstMappingsEditor.Common
+
+@model DimDept
+
+@{
+    var notSet = Constants.NotSet;
+}
+
+<tr id="@(Model.DeptID)">
+    <td class="actions-col">
+        <a class="btn btn-danger btn-sm btn-remove" data-toggle="modal" data-target="#confirmation-modal" data-confirm-text="Remove selected row?" data-confirm-btn-text="Remove" data-confirm-action="remove" data-is-table-row="1"></a>
+    </td>
+    <td><span class="readonly-cell uneditable dept-id">@Model.DeptID</span></td>
+
+    <td>
+        @Html.EditorFor(p=>p.Dept,
+            new {
+                htmlAttributes = new
+                {
+                    @Value = Model.Dept,
+                    @class = "form-control text-input text-input-cell dept",
+                    @type = "text",
+                    maxlength = "20",
+                    placeholder = notSet,
+                    data_initial = Model.Dept,
+                    data_val = Model.Dept
+                }
+            })
+    </td>
+    <td>
+        @Html.EditorFor(p=>p.DeptDesc,
+            new {
+                htmlAttributes = new
+                {
+                    @Value = Model.DeptDesc,
+                    @class = "form-control text-input text-input-cell dept-desc",
+                    @type = "text",
+                    maxlength = "100",
+                    placeholder = notSet,
+                    data_initial = Model.DeptDesc,
+                    data_val = Model.DeptDesc
+                }
+            })
+    </td>
+
+    <td><span class="readonly-cell create-date uneditable">@(Model.CreateDate.HasValue ? Model.CreateDate.Value.ToString("yyyy.MM.dd HH:mm") : notSet)</span></td>
+</tr>

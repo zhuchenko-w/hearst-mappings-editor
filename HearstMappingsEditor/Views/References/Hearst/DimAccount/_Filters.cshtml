@@ -1,0 +1,17 @@
+﻿@using HearstMappingsEditor.Data.Models
+
+<tr class="filters">
+    <th class="actions-col"></th>
+    <th></th>
+    <th><input type="text" class="form-control text-filter text-input account-desc" placeholder="Any" data-previous-val=""></th>
+    <th><input type="text" class="form-control text-filter text-input account-code" placeholder="Any" data-previous-val=""></th>
+    <th></th>
+</tr>
+
+<tr>
+    <th class="actions-col"></th>
+    <th><span class="sort unsorted" data-sort-type="@((int)DimAccountSortTypes.Id)"></span></th>
+    <th><span class="sort unsorted" data-sort-type="@((int)DimAccountSortTypes.AccountDesc)"></span></th>
+    <th><span class="sort unsorted" data-sort-type="@((int)DimAccountSortTypes.AccountCode)"></span></th>
+    <th><span class="sort unsorted" data-sort-type="@((int)DimAccountSortTypes.CreateDate)"></span></th>
+</tr>

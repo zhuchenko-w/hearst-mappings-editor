@@ -1,0 +1,165 @@
+﻿@using HearstMappingsEditor.Data.Models
+@using HearstMappingsEditor.Common
+
+@model DimProject
+
+@{
+    var notSet = Constants.NotSet;
+    var notSelected = Constants.NotSelected;
+}
+
+<tr id="@(Model.ProjectID)">
+    <td class="actions-col">
+        <a class="btn btn-danger btn-sm btn-remove" data-toggle="modal" data-target="#confirmation-modal" data-confirm-text="Remove selected row?" data-confirm-btn-text="Remove" data-confirm-action="remove" data-is-table-row="1"></a>
+    </td>
+    <td><span class="readonly-cell uneditable project-id">@Model.ProjectID</span></td>
+
+    <td>
+        @Html.EditorFor(p => p.ProjectCode,
+            new
+            {
+                htmlAttributes = new
+                {
+                    @Value = Model.ProjectCode,
+                    @class = "form-control text-input text-input-cell project-code",
+                    @type = "text",
+                    maxlength = "50",
+                    placeholder = notSet,
+                    data_initial = Model.ProjectCode,
+                    data_val = Model.ProjectCode
+                }
+            })
+    </td>
+    <td><span class="readonly-cell project-group" data-select="project-groups" data-val="@Model.ProjectGroup">@(string.IsNullOrEmpty(Model.ProjectGroup) ? notSelected : Model.ProjectGroup)</span></td>
+    <td>
+        @Html.EditorFor(p => p.ManagementProject,
+            new
+            {
+                htmlAttributes = new
+                {
+                    @Value = Model.ManagementProject,
+                    @class = "form-control text-input text-input-cell management-project",
+                    @type = "text",
+                    maxlength = "50",
+                    placeholder = notSet,
+                    data_initial = Model.ManagementProject,
+                    data_val = Model.ManagementProject
+                }
+            })
+    </td>
+    <td>
+        @Html.EditorFor(p => p.ManagementParent,
+            new
+            {
+                htmlAttributes = new
+                {
+                    @Value = Model.ManagementParent,
+                    @class = "form-control text-input text-input-cell management-parent",
+                    @type = "text",
+                    maxlength = "50",
+                    placeholder = notSet,
+                    data_initial = Model.ManagementParent,
+                    data_val = Model.ManagementParent
+                }
+            })
+    </td>
+    <td>
+        @Html.EditorFor(p => p.ManagementBrand,
+            new
+            {
+                htmlAttributes = new
+                {
+                    @Value = Model.ManagementBrand,
+                    @class = "form-control text-input text-input-cell management-brand",
+                    @type = "text",
+                    maxlength = "50",
+                    placeholder = notSet,
+                    data_initial = Model.ManagementBrand,
+                    data_val = Model.ManagementBrand
+                }
+            })
+    </td>
+    <td><span class="readonly-cell print-digital" data-select="print-digitals" data-val="@Model.PrintDigital">@(string.IsNullOrEmpty(Model.PrintDigital) ? notSet : Model.PrintDigital)</span></td>
+    <td>
+        @Html.EditorFor(p => p.Type,
+            new
+            {
+                htmlAttributes = new
+                {
+                    @Value = Model.Type,
+                    @class = "form-control text-input text-input-cell type",
+                    @type = "text",
+                    maxlength = "50",
+                    placeholder = notSet,
+                    data_initial = Model.Type,
+                    data_val = Model.Type
+                }
+            })
+    </td>
+    <td>
+        @Html.EditorFor(p => p.Description,
+            new
+            {
+                htmlAttributes = new
+                {
+                    @Value = Model.Description,
+                    @class = "form-control text-input text-input-cell description",
+                    @type = "text",
+                    maxlength = "50",
+                    placeholder = notSet,
+                    data_initial = Model.Description,
+                    data_val = Model.Description
+                }
+            })
+    </td>
+    <td>
+        @Html.EditorFor(p => p.C1HypCode,
+            new
+            {
+                htmlAttributes = new
+                {
+                    @Value = Model.C1HypCode,
+                    @class = "form-control text-input text-input-cell c1-hyp-code",
+                    @type = "text",
+                    maxlength = "50",
+                    placeholder = notSet,
+                    data_initial = Model.C1HypCode,
+                    data_val = Model.C1HypCode
+                }
+            })
+    </td>
+    <td>
+        @Html.EditorFor(p => p.C2HypCodeNew,
+            new
+            {
+                htmlAttributes = new
+                {
+                    @Value = Model.C2HypCodeNew,
+                    @class = "form-control text-input text-input-cell c2-hyp-code-new",
+                    @type = "text",
+                    maxlength = "50",
+                    placeholder = notSet,
+                    data_initial = Model.C2HypCodeNew,
+                    data_val = Model.C2HypCodeNew
+                }
+            })
+    </td>
+    <td>
+        @Html.EditorFor(p => p.C2Management,
+            new
+            {
+                htmlAttributes = new
+                {
+                    @Value = Model.C2Management,
+                    @class = "form-control text-input text-input-cell c2-management",
+                    @type = "text",
+                    maxlength = "50",
+                    placeholder = notSet,
+                    data_initial = Model.C2Management,
+                    data_val = Model.C2Management
+                }
+            })
+    </td>
+
+    <td><span class="readonly-cell create-date uneditable">@(Model.CreateDate.HasValue ? Model.CreateDate.Value.ToString("yyyy.MM.dd HH:mm") : notSet)</span></td>
+</tr>

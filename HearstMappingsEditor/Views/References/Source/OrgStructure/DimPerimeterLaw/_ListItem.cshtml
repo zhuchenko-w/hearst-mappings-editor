@@ -1,0 +1,47 @@
+﻿@using HearstMappingsEditor.Data.Models
+@using HearstMappingsEditor.Common
+
+@model DimPerimeterLaw
+
+@{
+    var notSet = Constants.NotSet;
+}
+
+<tr id="@(Model.PerimeterLawID)">
+    <td class="actions-col">
+        <a class="btn btn-danger btn-sm btn-remove" data-toggle="modal" data-target="#confirmation-modal" data-confirm-text="Remove selected row?" data-confirm-btn-text="Remove" data-confirm-action="remove" data-is-table-row="1"></a>
+    </td>
+    <td><span class="readonly-cell uneditable perimeter-law-id">@Model.PerimeterLawID</span></td>
+
+    <td>
+        @Html.EditorFor(p => p.PerimeterLawCode,
+            new {
+                htmlAttributes = new
+                {
+                    @Value = Model.PerimeterLawCode,
+                    @class = "form-control text-input text-input-cell perimeter-law-code",
+                    @type = "text",
+                    maxlength = "64",
+                    placeholder = notSet,
+                    data_initial = Model.PerimeterLawCode,
+                    data_val = Model.PerimeterLawCode
+                }
+            })
+    </td>
+    <td>
+        @Html.EditorFor(p => p.PerimeterLawDesc,
+            new {
+                htmlAttributes = new
+                {
+                    @Value = Model.PerimeterLawDesc,
+                    @class = "form-control text-input text-input-cell perimeter-law-desc",
+                    @type = "text",
+                    maxlength = "256",
+                    placeholder = notSet,
+                    data_initial = Model.PerimeterLawDesc,
+                    data_val = Model.PerimeterLawDesc
+                }
+            })
+    </td>
+    <td><span class="readonly-cell create-date uneditable">@(Model.CreateDate.HasValue ? Model.CreateDate.Value.ToString("yyyy.MM.dd HH:mm") : notSet)</span></td>
+</tr>

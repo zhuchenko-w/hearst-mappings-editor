@@ -1,0 +1,66 @@
+﻿@using HearstMappingsEditor.Models
+@using HearstMappingsEditor.Common
+@using HearstMappingsEditor.Data.Models
+
+@model MappingFilterableViewModel<CostCenterMappingViewModel, CostCenterMappingFilter, CostCenterMappingRestriction, CostCenterMappingRefs>
+
+@{
+    ViewBag.Title = "CostCenter Mapping";
+    var controller = "CostCenterMappings";
+}
+
+@section filters {
+    @{Html.RenderPartial("_Filters", Model.Refs);}
+}
+
+@section columnTitles {
+    <th style="display:none;">RowId</th>
+    <th>Dept</th>
+    <th>PrintDigital</th>
+    <th>CostCenterDesc</th>
+}
+
+@section items {
+    @{Html.RenderPartial("_List", new Tuple<IList<CostCenterMappingViewModel>, IList<CostCenterMappingRestriction>>(Model.MappingData.Mappings, Model.Restrictions));}
+}
+
+@section newItemFields {
+    @{Html.RenderPartial("_NewItemFields", Model.Refs);}
+}
+
+@section refs {
+    <select class="filterable-select dept">
+        @foreach (var item in Model.Refs.DimDepts)
+        {
+            <option value="@item.DeptID">@item.Dept</option>
+        }
+    </select>
+    <select class="filterable-select dept-print-digital">
+        @foreach (var item in Model.Refs.PrintDigitals)
+        {
+            <option value="@item">@item</option>
+        }
+    </select>
+    <select class="filterable-select cost-center">
+        @foreach (var item in Model.Refs.DimCostCenters)
+        {
+            <option value="@item.CostCenterID">@item.CostCenterDesc</option>
+        }
+    </select>
+}
+
+@section scripts {
+    @Scripts.Render("~/bundles/mapping")
+    <script>
+        var saveUrl = '@(Url.Action("Save", controller))';
+        var getListUrl = '@(Url.Action("GetList", controller))';
+        var getListItemUrl = '@(Url.Action("GetListItem", controller))';
+        var exportUrl = '@(Url.Action("Export", controller))';
+        var excelFileName = '@(Constants.ExportToExcelCostCenterMappingFileName)';
+        var initialSyncState = @((Model.MappingData.IsSynced).ToString().ToLower());
+        var initialLoadPageSize = @Model.InitialLoadPageSize;
+        var pageSize = @Model.PageSize;
+        @(string.IsNullOrEmpty(Model.Error)?"": $"showNotification('Error', '{Model.Error}');")
+    </script>
+    @Scripts.Render("~/bundles/mapping/cost-centers")
+}

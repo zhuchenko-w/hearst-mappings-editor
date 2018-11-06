@@ -1,0 +1,56 @@
+﻿@using HearstMappingsEditor.Models
+@using HearstMappingsEditor.Common
+
+@model OrgSubordinationByDateRefs
+
+@{
+    var notSelected = Constants.NotSelected;
+}
+
+<label for="nm-all-org-structure">
+    AllOrgStructure
+    <select class="filterable-select all-org-structure new" id="nm-all-org-structure">
+        <option value="null">@notSelected</option>
+        @foreach (var item in Model.DimAllOrgStructures)
+        {
+            <option value="@item.AllOrgStructureID">@item.AllOrgStructure</option>
+        }
+    </select>
+</label>
+<label for="nm-company">
+    Company
+    <select class="filterable-select company new" id="nm-company">
+        @foreach (var item in Model.DimCompanies)
+        {
+            <option value="@item.CompanyID">@($"{item.CompanyCode} ({item.CompanyDesc})")</option>
+        }
+    </select>
+</label>
+<label for="nm-perimeter">
+    Perimeter
+    <select class="filterable-select perimeter new" id="nm-perimeter">
+        <option value="null">@notSelected</option>
+        @foreach (var item in Model.DimPerimeters)
+        {
+            <option value="@item.PerimeterID">@($"{item.PerimeterCode} ({item.PerimeterDesc})")</option>
+        }
+    </select>
+</label>
+<label for="nm-perimeter-law">
+    PerimeterLaw
+    <select class="filterable-select perimeter-law new" id="nm-perimeter-law">
+        <option value="null">@notSelected</option>
+        @foreach (var item in Model.DimPerimeterLaws)
+        {
+            <option value="@item.PerimeterLawID">@($"{item.PerimeterLawCode} ({item.PerimeterLawDesc})")</option>
+        }
+    </select>
+</label>
+<label for="nm-date-start">
+    DateStart
+    <input id="nm-date-start" class="form-control date-ym-input date-start new" placeholder="DateStart">
+</label>
+<label for="nm-date-end">
+    DateEnd
+    <input id="nm-date-end" class="form-control date-ym-input date-end new" placeholder="DateEnd">
+</label>

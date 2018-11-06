@@ -1,0 +1,31 @@
+﻿@using HearstMappingsEditor.Data.Models
+@using HearstMappingsEditor.Common
+
+@model DimAccountGroup
+
+@{
+    var notSet = Constants.NotSet;
+}
+
+<tr id="@(Model.AccountGroupID)">
+    <td class="actions-col">
+        <a class="btn btn-danger btn-sm btn-remove" data-toggle="modal" data-target="#confirmation-modal" data-confirm-text="Remove selected row?" data-confirm-btn-text="Remove" data-confirm-action="remove" data-is-table-row="1"></a>
+    </td>
+    <td><span class="readonly-cell uneditable account-group-id">@Model.AccountGroupID</span></td>
+    <td>
+        @Html.EditorFor(p => p.AccountGroupDesc,
+                      new
+                      {
+                          htmlAttributes = new
+                          {
+                              @Value = Model.AccountGroupDesc,
+                              @class = "form-control text-input text-input-cell account-group-desc",
+                              @type = "text",
+                              maxlength = "500",
+                              placeholder = notSet,
+                              data_initial = Model.AccountGroupDesc,
+                              data_val = Model.AccountGroupDesc
+                          }
+                      })
+    </td>
+</tr>

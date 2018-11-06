@@ -1,0 +1,33 @@
+﻿@using HearstMappingsEditor.Data.Models
+
+@model Tuple<BrandMappingViewModel, IList<BrandMappingRestriction>>
+
+@{
+    var rowIsRemovable = true;
+    var projectIdIsEditable = true;
+    var LOBDetailIdIsEditable = true;
+    var restrictions = Model.Item2;
+    if (restrictions != null && Model.Item1.RowId > 0)
+    {
+        foreach (var restriction in restrictions)
+        {
+            if ((restriction.LOBDetailIdIsSet || restriction.ProjectIdIsSet)
+                    && (!restriction.LOBDetailIdIsSet || restriction.LOBDetailID == Model.Item1.LOBDetailID)
+                    && (!restriction.ProjectIdIsSet || restriction.ProjectID == Model.Item1.ProjectID))
+            {
+                rowIsRemovable = false;
+                projectIdIsEditable &= !restriction.ProjectIdIsSet;
+                LOBDetailIdIsEditable &= !restriction.LOBDetailIdIsSet;
+            }
+        }
+    }
+}
+
+<tr id="@(Model.Item1.RowId)">
+    <td class="actions-col">
+        <a class="btn btn-danger btn-sm btn-remove @(rowIsRemovable ? "" : "disabled")" data-toggle="modal" data-target="#confirmation-modal" data-confirm-text="Remove selected row?" data-confirm-btn-text="Remove" data-confirm-action="remove" data-is-table-row="1"></a>
+    </td>
+    <td style="display:none;"><span class="readonly-cell uneditable row-id" data-val="@Model.Item1.RowId">@Model.Item1.RowId</span></td>
+    <td><span class="readonly-cell project @(projectIdIsEditable ? "" : "uneditable")" data-select="project" data-val="@Model.Item1.ProjectID">@Model.Item1.ProjectCode</span></td>
+    <td><span class="readonly-cell brand @(LOBDetailIdIsEditable ? "" : "uneditable")" data-select="brand" data-val="@Model.Item1.LOBDetailID">@(Model.Item1.LOBDetailCode)</span></td>
+</tr>

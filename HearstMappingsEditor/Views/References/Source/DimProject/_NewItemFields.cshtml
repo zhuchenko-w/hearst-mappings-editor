@@ -1,0 +1,64 @@
+﻿@using HearstMappingsEditor.Common
+@using HearstMappingsEditor.Models
+
+@model DimProjectRefs
+
+@{
+    var notSelected = Constants.NotSelected;
+}
+
+<label for="nm-project-code">
+    ProjectCode
+    <input id="nm-project-code" type="text" class="form-control text-input project-code new" placeholder="ProjectCode" maxlength="50">
+</label>
+<label for="nm-project-group">
+    ProjectGroup
+    <select class="filterable-select project-group new" id="nm-project-group">
+        <option value="">@notSelected</option>
+        @foreach (var pg in Model.ProjectGroups)
+        {
+            <option value="@pg">@pg</option>
+        }
+    </select>
+</label>
+<label for="nm-management-project">
+    ManagementProject
+    <input id="nm-management-project" type="text" class="form-control text-input management-project new" placeholder="ManagementProject" maxlength="50">
+</label>
+<label for="nm-management-parent">
+    ManagementParent
+    <input id="nm-management-parent" type="text" class="form-control text-input management-parent new" placeholder="ManagementParent" maxlength="50">
+</label>
+<label for="nm-management-brand">
+    ManagementBrand
+    <input id="nm-management-brand" type="text" class="form-control text-input management-brand new" placeholder="ManagementBrand" maxlength="50">
+</label>
+<label for="nm-print-digital">
+    PrintDigital
+    <select class="filterable-select print-digital new" id="nm-print-digital">
+        @foreach (var pd in Model.PrintDigitals)
+        {
+            <option value="@pd">@pd</option>
+        }
+    </select>
+</label>
+<label for="nm-type">
+    Type
+    <input id="nm-type" type="text" class="form-control text-input type new" placeholder="Type" maxlength="50">
+</label>
+<label for="nm-description">
+    Description
+    <input id="nm-description" type="text" class="form-control text-input description new" placeholder="Description" maxlength="50">
+</label>
+<label for="nm-c1-hyp-code">
+    C1HypCode
+    <input id="nm-c1-hyp-code" type="text" class="form-control text-input c1-hyp-code new" placeholder="C1HypCode" maxlength="50">
+</label>
+<label for="nm-c2-hyp-code-new">
+    C2HypCodeNew
+    <input id="nm-c2-hyp-code-new" type="text" class="form-control text-input c2-hyp-code-new new" placeholder="C2HypCodeNew" maxlength="50">
+</label>
+<label for="nm-c2-management">
+    C2Management
+    <input id="nm-c2-management" type="text" class="form-control text-input c2-management new" placeholder="C2Management" maxlength="50">
+</label>

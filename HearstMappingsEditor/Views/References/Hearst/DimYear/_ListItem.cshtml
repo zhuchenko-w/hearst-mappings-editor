@@ -1,0 +1,47 @@
+﻿@using HearstMappingsEditor.Data.Models
+@using HearstMappingsEditor.Common
+
+@model DimYear
+
+@{
+    var notSet = Constants.NotSet;
+}
+
+<tr id="@(Model.YearID)">
+    <td class="actions-col">
+        <a class="btn btn-danger btn-sm btn-remove" data-toggle="modal" data-target="#confirmation-modal" data-confirm-text="Remove selected row?" data-confirm-btn-text="Remove" data-confirm-action="remove" data-is-table-row="1"></a>
+    </td>
+    <td><span class="readonly-cell uneditable year-id">@Model.YearID</span></td>
+    <td>
+        @Html.EditorFor(p => p.YearCode,
+            new
+            {
+                htmlAttributes = new
+                {
+                    @Value = Model.YearCode,
+                    @class = "form-control text-input text-input-cell required year-code",
+                    @type = "text",
+                    maxlength = "4",
+                    placeholder = notSet,
+                    data_initial = Model.YearCode,
+                    data_val = Model.YearCode
+                }
+            })
+    </td>
+    <td>
+        @Html.EditorFor(p => p.YearDesc,
+            new
+            {
+                htmlAttributes = new
+                {
+                    @Value = Model.YearDesc,
+                    @class = "form-control text-input text-input-cell year-desc",
+                    @type = "text",
+                    maxlength = "64",
+                    placeholder = notSet,
+                    data_initial = Model.YearDesc,
+                    data_val = Model.YearDesc
+                }
+            })
+    </td>
+</tr>

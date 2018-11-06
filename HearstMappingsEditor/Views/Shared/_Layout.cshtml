@@ -1,0 +1,201 @@
+﻿@using HearstMappingsEditor.Common
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Hearst Mappings Editor</title>
+    @Styles.Render("~/common/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <style>
+        .btn-remove {
+            background-image: url("@Url.Content("~/Content/Images/remove-icon-white.png")");
+        }
+        .btn-add {
+            background-image: url("@Url.Content("~/Content/Images/plus-box-icon-white.png")");
+        }
+        span.sort.up {
+            background-image: url("@Url.Content("~/Content/Images/sort-up.png")");
+        }
+        span.sort.down {
+            background-image: url("@Url.Content("~/Content/Images/sort-down.png")");
+        }
+        span.sort.unsorted {
+            background-image: url("@Url.Content("~/Content/Images/sort-unsorted.png")");
+        }
+    </style>
+    @RenderSection("styles", required: false)
+</head>
+<body>
+    <div class="container body-header">
+        <div class="row button-bar">
+            <div class="col">
+                <div class="dropdown tab-dropdown">
+                    <a class="btn btn-block btn-tab btn-tab-mappings" role="button" id="mappings" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Mappings
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="mappings">
+                        <a class="dropdown-item accounts-mapping-tab" href="@Url.Action("Index", "AccountMappings")">Accounts Mapping</a>
+                        <a class="dropdown-item brands-mapping-tab" href="@Url.Action("Index", "BrandMappings")">Brands Mapping</a>
+                        <a class="dropdown-item perimeters-mapping-tab" href="@Url.Action("Index", "EntityMappings")">Perimeters Mapping</a>
+                        <a class="dropdown-item depts-mapping-tab" href="@Url.Action("Index", "CostCenterMappings")">Departments Mapping</a>
+                        <a class="dropdown-item item-pl-kinds-mapping-tab" href="@Url.Action("Index", "ItemPLKinds")">ItemPLKinds</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="dropdown tab-dropdown">
+                    <a class="btn btn-block btn-tab btn-tab-refs" role="button" id="references" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        References
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="references">
+                        <a class="dropdown-item dim-item-ref-tab" href="@Url.Action("Index", "DimItem")">DimItem</a>
+                        <a class="dropdown-item dim-project-ref-tab" href="@Url.Action("Index", "DimProject")">DimProject</a>
+                        <a class="dropdown-item dim-dept-ref-tab" href="@Url.Action("Index", "DimDept")">DimDept</a>
+                        <a class="dropdown-item dim-pl-group-ref-tab" href="@Url.Action("Index", "DimPLGroup")">DimPLGroup</a>
+                        <a class="dropdown-item dim-pl-kind-ref-tab" href="@Url.Action("Index", "DimPLKind")">DimPLKind</a>
+                        <a class="dropdown-item dim-account-ref-tab" href="@Url.Action("Index", "DimAccount")">DimAccount</a>
+                        <a class="dropdown-item dim-account-group-ref-tab" href="@Url.Action("Index", "DimAccountGroup")">DimAccountGroup</a>
+                        <a class="dropdown-item dim-entity-ref-tab" href="@Url.Action("Index", "DimEntity")">DimEntity</a>
+                        <a class="dropdown-item dim-scenario-ref-tab" href="@Url.Action("Index", "DimScenario")">DimScenario</a>
+                        <a class="dropdown-item dim-conso-section-ref-tab" href="@Url.Action("Index", "DimConsoSection")">DimConsoSection</a>
+                        <a class="dropdown-item dim-product-ref-tab" href="@Url.Action("Index", "DimProduct")">DimProduct</a>
+                        <a class="dropdown-item dim-channel-ref-tab" href="@Url.Action("Index", "DimChannel")">DimChannel</a>
+                        <a class="dropdown-item dim-year-ref-tab" href="@Url.Action("Index", "DimYear")">DimYear</a>
+                        @*<a class="dropdown-item dim-all-org-structure-ref-tab" href="@Url.Action("Index", "DimAllOrgStructure")">DimAllOrgStructure</a>*@
+                        <a class="dropdown-item dim-perimeter-law-ref-tab" href="@Url.Action("Index", "DimPerimeterLaw")">DimPerimeterLaw</a>
+                        <a class="dropdown-item dim-perimeter-ref-tab" href="@Url.Action("Index", "DimPerimeter")">DimPerimeter</a>
+                        <a class="dropdown-item dim-company-ref-tab" href="@Url.Action("Index", "DimCompany")">DimCompany</a>
+                        <a class="dropdown-item org-subordination-by-date-ref-tab" href="@Url.Action("Index", "OrgSubordinationByDate")">OrgSubordinationByDate</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <a class="btn btn-info action-btn btn-save" data-toggle="modal" data-target="#confirmation-modal" data-confirm-text="Save all changes?" data-confirm-btn-text="Save" data-confirm-action="saveAll">
+                    Save
+                </a>
+            </div>
+            <div class="col">
+                <a class="btn btn-info action-btn btn-sync">
+                    Recalculate
+                </a>
+            </div>
+            <div class="col">
+                <div class="dropdown actions-dropdown">
+                    <a class="btn btn-info btn-block action-btn" role="button" id="export-to-excel" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Export to Excel
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="export-to-excel">
+                        <a class="dropdown-item btn btn-info action-btn btn-export-to-excel-all">All</a>
+                        <a class="dropdown-item btn btn-info action-btn btn-export-to-excel">Visible</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr />
+    </div>
+
+    <div class="body-content">
+        <div class="table-responsive">
+            <table class="main-table table table-hover">
+                <thead>
+                    @RenderSection("filters", required: true)
+                    <tr>
+                        <th class="actions-col">
+                            <a class="btn btn-success btn-sm btn-add" data-toggle="modal" data-target="#add-modal"></a>
+                        </th>
+                        @RenderSection("columnTitles", required: true)
+                    </tr>
+                </thead>
+                <tbody>
+                    @RenderSection("items", required: true)
+                </tbody>
+            </table>
+        </div>
+        <div class="refs">
+            @RenderSection("refs", required: false)
+        </div>
+    </div>
+
+    <div class="modal fade" id="add-modal" tabindex="-1" role="dialog" aria-labelledby="add-modal-title" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="add-modal-title">Add new item</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="add-form">
+                        @RenderSection("newItemFields", required: true)
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary btn-add-confirm">Add</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="confirmation-modal" tabindex="-1" role="dialog" aria-labelledby="confirmation-modal-title" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmation-modal-title">Confirmation</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p class="confirm-text"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary btn-confirm"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="notification-modal" tabindex="-1" role="dialog" aria-labelledby="notification-modal-title" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="notification-modal-title"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p class="notification-text"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="spinner">
+        <div class="spinner-inner"></div>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/common")
+
+    <script>
+        var syncMappingUrl = '@(Url.Action("SyncMapping", "Base"))';
+        var checkMappingSyncStateUrl = '@(Url.Action("CheckMappingSyncState", "Base"))';
+        var downloadFileUrl = '@(Url.Action("DownloadFile", "Base"))';
+        var notSelected = '@Constants.NotSelected';
+        var notSet = '@Constants.NotSet';
+    </script>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

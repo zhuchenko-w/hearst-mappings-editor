@@ -1,0 +1,63 @@
+﻿@using HearstMappingsEditor.Data.Models
+@using HearstMappingsEditor.Common
+
+@model DimPerimeter
+
+@{
+    var notSet = Constants.NotSet;
+}
+
+<tr id="@(Model.PerimeterID)">
+    <td class="actions-col">
+        <a class="btn btn-danger btn-sm btn-remove" data-toggle="modal" data-target="#confirmation-modal" data-confirm-text="Remove selected row?" data-confirm-btn-text="Remove" data-confirm-action="remove" data-is-table-row="1"></a>
+    </td>
+    <td><span class="readonly-cell uneditable perimeter-id">@Model.PerimeterID</span></td>
+
+    <td>
+        @Html.EditorFor(p => p.PerimeterCode,
+            new {
+                htmlAttributes = new
+                {
+                    @Value = Model.PerimeterCode,
+                    @class = "form-control text-input text-input-cell perimeter-code",
+                    @type = "text",
+                    maxlength = "64",
+                    placeholder = notSet,
+                    data_initial = Model.PerimeterCode,
+                    data_val = Model.PerimeterCode
+                }
+            })
+    </td>
+    <td>
+        @Html.EditorFor(p => p.PerimeterDesc,
+            new {
+                htmlAttributes = new
+                {
+                    @Value = Model.PerimeterDesc,
+                    @class = "form-control text-input text-input-cell perimeter-desc",
+                    @type = "text",
+                    maxlength = "256",
+                    placeholder = notSet,
+                    data_initial = Model.PerimeterDesc,
+                    data_val = Model.PerimeterDesc
+                }
+            })
+    </td>
+    <td>
+        @Html.EditorFor(p => p.PerimeterCurrency,
+             new
+             {
+                 htmlAttributes = new
+                 {
+                     @Value = Model.PerimeterCurrency,
+                     @class = "form-control text-input text-input-cell perimeter-currency",
+                     @type = "text",
+                     maxlength = "64",
+                     placeholder = notSet,
+                     data_initial = Model.PerimeterCurrency,
+                     data_val = Model.PerimeterCurrency
+                 }
+             })
+    </td>
+    <td><span class="readonly-cell create-date uneditable">@(Model.CreateDate.HasValue ? Model.CreateDate.Value.ToString("yyyy.MM.dd HH:mm") : notSet)</span></td>
+</tr>

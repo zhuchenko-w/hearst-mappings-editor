@@ -1,0 +1,70 @@
+﻿@using HearstMappingsEditor.Models
+@using HearstMappingsEditor.Common
+@using HearstMappingsEditor.Data.Models
+
+@model ReferencesExtendedFilterableViewModel<DimProject, DimProjectFilter, DimProjectRefs>
+
+@{
+    ViewBag.Title = "DimProject Reference";
+    var controller = "DimProject";
+    var notSelected = Constants.NotSelected;
+}
+
+@section filters {
+    @{Html.RenderPartial("_Filters", Model.Refs);}
+}
+
+@section columnTitles {
+    <th>ProjectID</th>
+    <th>ProjectCode</th>
+    <th>ProjectGroup</th>
+    <th>ManagementProject</th>
+    <th>ManagementParent</th>
+    <th>ManagementBrand</th>
+    <th>PrintDigital</th>
+    <th>Type</th>
+    <th>Description</th>
+    <th>C1HypCode</th>
+    <th>C2HypCodeNew</th>
+    <th>C2Management</th>
+    <th>CreateDate</th>
+}
+
+@section items {
+    @{Html.RenderPartial("_List", Model.ReferenceItems);}
+}
+
+@section newItemFields {
+    @{Html.RenderPartial("_NewItemFields", Model.Refs);}
+}
+
+@section refs {
+    <select class="filterable-select project-groups">
+        <option value="">@notSelected</option>
+        @foreach (var pg in Model.Refs.ProjectGroups)
+        {
+            <option value="@pg">@pg</option>
+        }
+    </select>
+    <select class="filterable-select print-digitals">
+        @foreach (var pd in Model.Refs.PrintDigitals)
+        {
+            <option value="@pd">@pd</option>
+        }
+    </select>
+}
+
+@section scripts {
+    @Scripts.Render("~/bundles/refs")
+    <script>
+        var saveUrl = '@(Url.Action("Save", controller))';
+        var getListUrl = '@(Url.Action("GetList", controller))';
+        var getListItemUrl = '@(Url.Action("GetListItem", controller))';
+        var exportUrl = '@(Url.Action("Export", controller))';
+        var excelFileName = '@(Constants.ExportToExcelDimProjectFileName)';
+        var initialLoadPageSize = @Model.InitialLoadPageSize;
+        var pageSize = @Model.PageSize;
+        @(string.IsNullOrEmpty(Model.Error)?"": $"showNotification('Error', '{Model.Error}');")
+    </script>
+    @Scripts.Render("~/bundles/refs/source/dimProject")
+}

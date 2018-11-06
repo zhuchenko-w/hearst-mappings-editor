@@ -1,0 +1,17 @@
+﻿@using HearstMappingsEditor.Data.Models
+
+@model Tuple<IList<AccountMappingViewModel>, IList<AccountMappingRestriction>>
+
+@if (Model.Item1.Any())
+{
+    foreach (var mapping in Model.Item1)
+    {
+        Html.RenderPartial("_ListItem", new Tuple<AccountMappingViewModel, IList<AccountMappingRestriction>>(mapping, Model.Item2));
+    }
+}
+else
+{
+    <tr class="nothing-found">
+        <td colspan="11">Nothing found</td>
+    </tr>
+}

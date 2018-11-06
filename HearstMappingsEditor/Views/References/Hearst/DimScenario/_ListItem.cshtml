@@ -1,0 +1,66 @@
+﻿@using HearstMappingsEditor.Data.Models
+@using HearstMappingsEditor.Common
+
+@model DimScenario
+
+@{
+    var notSet = Constants.NotSet;
+    var notSelected = Constants.NotSelected;
+}
+
+<tr id="@(Model.ScenarioID)">
+    <td class="actions-col">
+        <a class="btn btn-danger btn-sm btn-remove" data-toggle="modal" data-target="#confirmation-modal" data-confirm-text="Remove selected row?" data-confirm-btn-text="Remove" data-confirm-action="remove" data-is-table-row="1"></a>
+    </td>
+    <td><span class="readonly-cell uneditable scenario-id">@Model.ScenarioID</span></td>
+    <td>
+        @Html.EditorFor(p => p.ScenarioDesc,
+            new
+            {
+                htmlAttributes = new
+                {
+                    @Value = Model.ScenarioDesc,
+                    @class = "form-control text-input text-input-cell scenario-desc",
+                    @type = "text",
+                    maxlength = "255",
+                    placeholder = notSet,
+                    data_initial = Model.ScenarioDesc,
+                    data_val = Model.ScenarioDesc
+                }
+            })
+    </td>
+    <td>
+        @Html.EditorFor(p => p.ScenarioCode,
+            new
+            {
+                htmlAttributes = new
+                {
+                    @Value = Model.ScenarioCode,
+                    @class = "form-control text-input text-input-cell scenario-code",
+                    @type = "text",
+                    maxlength = "10",
+                    placeholder = notSet,
+                    data_initial = Model.ScenarioCode,
+                    data_val = Model.ScenarioCode
+                }
+            })
+    </td>
+    <td>
+        @Html.EditorFor(p => p.InputCode,
+            new
+            {
+                htmlAttributes = new
+                {
+                    @Value = Model.InputCode,
+                    @class = "form-control text-input text-input-cell input-code",
+                    @type = "text",
+                    maxlength = "50",
+                    placeholder = notSet,
+                    data_initial = Model.InputCode,
+                    data_val = Model.InputCode
+                }
+            })
+    </td>
+    <td><span class="readonly-cell month-num" data-select="month-nums" data-val="@Model.MonthNum">@(Model.MonthNum.HasValue ? Model.MonthNum.Value + "" : notSelected)</span></td>
+    <td><span class="readonly-cell create-date uneditable">@(Model.CreateDate.HasValue ? Model.CreateDate.Value.ToString("yyyy.MM.dd HH:mm") : notSet)</span></td>
+</tr>

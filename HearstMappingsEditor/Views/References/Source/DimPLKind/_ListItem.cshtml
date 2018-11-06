@@ -1,0 +1,34 @@
+﻿@using HearstMappingsEditor.Data.Models
+@using HearstMappingsEditor.Common
+
+@model DimPLKindViewModel
+
+@{
+    var notSet = Constants.NotSet;
+    var notSelected = Constants.NotSelected;
+}
+
+<tr id="@(Model.PLKindID)">
+    <td class="actions-col">
+        <a class="btn btn-danger btn-sm btn-remove" data-toggle="modal" data-target="#confirmation-modal" data-confirm-text="Remove selected row?" data-confirm-btn-text="Remove" data-confirm-action="remove" data-is-table-row="1"></a>
+    </td>
+    <td><span class="readonly-cell uneditable pl-kind-id">@Model.PLKindID</span></td>
+
+    <td>
+        @Html.EditorFor(p => p.PLKindName,
+            new
+            {
+                htmlAttributes = new
+                {
+                    @Value = Model.PLKindName,
+                    @class = "form-control text-input text-input-cell required pl-kind-name",
+                    @type = "text",
+                    maxlength = "500",
+                    placeholder = notSet,
+                    data_initial = Model.PLKindName,
+                    data_val = Model.PLKindName
+                }
+            })
+    </td>
+    <td><span class="readonly-cell pl-group" data-select="pl-groups" data-val="@Model.PLGroupID">@(string.IsNullOrEmpty(Model.PLGroupName) ? notSelected : Model.PLGroupName)</span></td>
+</tr>

@@ -1,0 +1,14 @@
+﻿[
+  {
+    "outputFile": "Content/app/error.css",
+    "inputFile": "Content/app/error.scss"
+  },
+  {
+    "outputFile": "Content/app/common.css",
+    "inputFile": "Content/app/common.scss"
+  },
+  {
+    "outputFile": "Content/css/datepicker.css",
+    "inputFile": "Content/css/datepicker.less"
+  }
+]

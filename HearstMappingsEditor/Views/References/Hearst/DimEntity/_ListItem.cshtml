@@ -1,0 +1,64 @@
+﻿@using HearstMappingsEditor.Data.Models
+@using HearstMappingsEditor.Common
+
+@model DimEntity
+
+@{
+    var notSet = Constants.NotSet;
+}
+
+<tr id="@(Model.EntityID)">
+    <td class="actions-col">
+        <a class="btn btn-danger btn-sm btn-remove" data-toggle="modal" data-target="#confirmation-modal" data-confirm-text="Remove selected row?" data-confirm-btn-text="Remove" data-confirm-action="remove" data-is-table-row="1"></a>
+    </td>
+    <td><span class="readonly-cell uneditable entity-id">@Model.EntityID</span></td>
+    <td>
+        @Html.EditorFor(p => p.EntityDesc,
+                           new
+                           {
+                               htmlAttributes = new
+                               {
+                                   @Value = Model.EntityDesc,
+                                   @class = "form-control text-input text-input-cell entity-desc",
+                                   @type = "text",
+                                   maxlength = "128",
+                                   placeholder = notSet,
+                                   data_initial = Model.EntityDesc,
+                                   data_val = Model.EntityDesc
+                               }
+                           })
+    </td>
+    <td>
+        @Html.EditorFor(p => p.EntityCode,
+                           new
+                           {
+                               htmlAttributes = new
+                               {
+                                   @Value = Model.EntityCode,
+                                   @class = "form-control text-input text-input-cell entity-code",
+                                   @type = "text",
+                                   maxlength = "32",
+                                   placeholder = notSet,
+                                   data_initial = Model.EntityCode,
+                                   data_val = Model.EntityCode
+                               }
+                           })
+    </td>
+    <td>
+        @Html.EditorFor(p => p.EntityCurrency,
+                           new
+                           {
+                               htmlAttributes = new
+                               {
+                                   @Value = Model.EntityCurrency,
+                                   @class = "form-control text-input text-input-cell entity-currency",
+                                   @type = "text",
+                                   maxlength = "8",
+                                   placeholder = notSet,
+                                   data_initial = Model.EntityCurrency,
+                                   data_val = Model.EntityCurrency
+                               }
+                           })
+    </td>
+    <td><span class="readonly-cell create-date uneditable">@(Model.CreateDate.HasValue ? Model.CreateDate.Value.ToString("yyyy.MM.dd HH:mm") : notSet)</span></td>
+</tr>

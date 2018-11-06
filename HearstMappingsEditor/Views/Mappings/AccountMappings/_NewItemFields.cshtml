@@ -1,0 +1,95 @@
+﻿@using HearstMappingsEditor.Models
+@using HearstMappingsEditor.Common
+
+@model AccountMappingRefs
+
+@{
+    var notSelected = Constants.NotSelected;
+}
+
+<label for="nm-dept">
+    DeptCode
+    <select class="filterable-select dept new" id="nm-dept">
+        <option value="null">@notSelected</option>
+        @foreach (var item in Model.Depts)
+        {
+            <option value="@item.DeptID">@item.Dept</option>
+        }
+    </select>
+</label>
+<label for="nm-item">
+    ItemUAN
+    <select class="filterable-select item new" id="nm-item">
+        @foreach (var item in Model.Items)
+        {
+            <option value="@item.ItemID">@item.UAN</option>
+        }
+    </select>
+</label>
+<label for="nm-print-digital">
+    PrintDigital
+    <select class="filterable-select account-print-digital new" id="nm-print-digital">
+        @foreach (var item in Model.PrintDigitals)
+        {
+            <option value="@item">@item</option>
+        }
+    </select>
+</label>
+<label for="nm-account-group">
+    AccountGroupDesc
+    <select class="filterable-select account-group new" id="nm-account-group">
+        <option value="null">@notSelected</option>
+        @foreach (var item in Model.AccountGroups)
+        {
+            <option value="@item.AccountGroupID">@item.AccountGroupDesc</option>
+        }
+    </select>
+</label>
+<label for="nm-account">
+    AccountCode
+    <select class="filterable-select account new" id="nm-account">
+        @foreach (var item in Model.Accounts)
+        {
+            <option value="@item.AccountID">@($"{item.AccountCode} ({item.AccountDesc})")</option>
+        }
+    </select>
+</label>
+<label for="nm-product">
+    ProductCode
+    <select class="filterable-select product new" id="nm-product">
+        @foreach (var item in Model.Products)
+        {
+            <option value="@item.ProductID">@($"{item.ProductCode} ({item.ProductDesc})")</option>
+        }
+    </select>
+</label>
+<label for="nm-channel">
+    ChannelCode
+    <select class="filterable-select channel new" id="nm-channel">
+        @foreach (var item in Model.Channels)
+        {
+            <option value="@item.ChannelID">@($"{item.ChannelCode} ({item.ChannelDesc})")</option>
+        }
+    </select>
+</label>
+<label for="nm-sign-mapping">
+    SignMapping
+    <select class="filterable-select sign-mapping new" id="nm-sign-mapping">
+        <option value="null">@notSelected</option>
+        @foreach (var item in Model.SignMappings)
+        {
+            <option value="@item">@item</option>
+        }
+    </select>
+</label>
+<label for="nm-sign-pl">
+    SignPL
+    <select class="filterable-select sign-pl new" id="nm-sign-pl">
+        <option value="null">@notSelected</option>
+        @foreach (var item in Model.SignPLs)
+        {
+            <option value="@item">@item</option>
+        }
+    </select>
+</label>
+

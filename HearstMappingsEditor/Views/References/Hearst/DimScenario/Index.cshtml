@@ -1,0 +1,57 @@
+﻿@using HearstMappingsEditor.Models
+@using HearstMappingsEditor.Common
+@using HearstMappingsEditor.Data.Models
+
+@model ReferencesExtendedFilterableViewModel<DimScenario, DimScenarioFilter, DimScenarioRefs>
+
+@{
+    ViewBag.Title = "DimScenario Reference";
+    var controller = "DimScenario";
+    var notSelected = Constants.NotSelected;
+}
+
+@section filters {
+    @{Html.RenderPartial("_Filters", Model.Refs);}
+}
+
+@section columnTitles {
+    <th>ScenarioID</th>
+    <th>ScenarioDesc</th>
+    <th>ScenarioCode</th>
+    <th>InputCode</th>
+    <th>MonthNum</th>
+    <th>CreateDate</th>
+}
+
+@section items {
+    @{Html.RenderPartial("_List", Model.ReferenceItems);}
+}
+
+@section newItemFields {
+    @{Html.RenderPartial("_NewItemFields", Model.Refs);}
+}
+
+@section refs {
+    <select class="filterable-select month-nums">
+        <option value="null">@notSelected</option>
+        @foreach (var month in Model.Refs.MonthNums)
+        {
+            <option value="@month">@month</option>
+        }
+    </select>
+}
+
+@section scripts {
+    @Scripts.Render("~/bundles/refs")
+    <script>
+        var saveUrl = '@(Url.Action("Save", controller))';
+        var getListUrl = '@(Url.Action("GetList", controller))';
+        var getListItemUrl = '@(Url.Action("GetListItem", controller))';
+        var exportUrl = '@(Url.Action("Export", controller))';
+        var excelFileName = '@(Constants.ExportToExcelDimScenarioFileName)';
+        var initialLoadPageSize = @Model.InitialLoadPageSize;
+        var pageSize = @Model.PageSize;
+        @(string.IsNullOrEmpty(Model.Error)?"": $"showNotification('Error', '{Model.Error}');")
+    </script>
+    @Scripts.Render("~/bundles/refs/hearst/dimScenario")
+}

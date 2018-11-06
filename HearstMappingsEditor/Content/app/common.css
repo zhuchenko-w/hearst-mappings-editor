@@ -1,0 +1,292 @@
+﻿body {
+  padding-bottom: 30px;
+  min-width: 200px; }
+
+footer {
+  text-align: center; }
+
+.body-header {
+  max-width: 100%;
+  background-color: white;
+  position: fixed;
+  z-index: 101; }
+  .body-header .button-bar {
+    text-align: center;
+    padding-top: 10px;
+    max-width: 1200px;
+    margin: 0 auto; }
+    .body-header .button-bar .tab-dropdown .dropdown-menu {
+      text-align: center;
+      width: auto;
+      overflow-y: auto;
+      max-height: calc(100vh - 80px); }
+      .body-header .button-bar .tab-dropdown .dropdown-menu .dropdown-item.active {
+        background-color: #85a7cb !important; }
+    .body-header .button-bar .tab-dropdown .btn-tab {
+      color: black;
+      background-color: #c6d9ed;
+      margin: 5px auto;
+      max-width: 200px; }
+      .body-header .button-bar .tab-dropdown .btn-tab.active {
+        color: white;
+        background-color: #85a7cb; }
+      .body-header .button-bar .tab-dropdown .btn-tab:hover {
+        color: white !important; }
+      .body-header .button-bar .tab-dropdown .btn-tab:active {
+        background-color: #85a7cb; }
+    .body-header .button-bar .actions-dropdown .dropdown-menu {
+      text-align: center;
+      width: auto;
+      padding: 0 5px;
+      overflow-y: auto;
+      max-height: calc(100vh - 80px); }
+      .body-header .button-bar .actions-dropdown .dropdown-menu .dropdown-item {
+        background-color: #17a2b8; }
+        .body-header .button-bar .actions-dropdown .dropdown-menu .dropdown-item:hover {
+          background-color: #138496; }
+        .body-header .button-bar .actions-dropdown .dropdown-menu .dropdown-item:active {
+          background-color: #117a8b; }
+    .body-header .button-bar .action-btn {
+      color: white !important;
+      margin: 5px auto;
+      width: 100%;
+      max-width: 200px; }
+      .body-header .button-bar .action-btn:hover {
+        color: white !important; }
+      .body-header .button-bar .action-btn.disabled {
+        color: black !important; }
+
+.body-content {
+  padding: 0 30px 15px 0;
+  position: absolute;
+  margin-top: 90px; }
+
+.sticky-table-header-container {
+  left: 0px !important; }
+
+.main-table {
+  margin-left: 30px;
+  width: calc(100% - 35px);
+  background-color: white; }
+  .main-table thead {
+    background-color: white; }
+    .main-table thead .filters th.actions-col {
+      height: 100%; }
+    .main-table thead tr {
+      border-bottom: 1px solid lightgray; }
+      .main-table thead tr th {
+        border: none;
+        padding: 7px 0.75rem; }
+  .main-table tbody tr {
+    border-bottom: 1px solid lightgray; }
+    .main-table tbody tr td {
+      border: none;
+      padding: 0 0 0 0;
+      /*&.actions-col {
+                    padding: 0;
+                    position: absolute;
+                    width: 35px;
+                    height: 38px;
+                    margin-left: -35px;
+                    background-color: white;
+                    z-index: 1;
+                }*/ }
+      .main-table tbody tr td .select2 {
+        width: 100% !important; }
+      .main-table tbody tr td .date-ym-input {
+        border-radius: 0;
+        height: 31px;
+        border: none;
+        box-shadow: none; }
+        .main-table tbody tr td .date-ym-input[readonly] {
+          background-color: unset; }
+        .main-table tbody tr td .date-ym-input.changed {
+          background-color: #28a745;
+          color: white; }
+          .main-table tbody tr td .date-ym-input.changed ::placeholder {
+            color: white !important; }
+          .main-table tbody tr td .date-ym-input.changed ::-webkit-input-placeholder {
+            color: white !important; }
+          .main-table tbody tr td .date-ym-input.changed :-moz-placeholder {
+            color: white !important; }
+          .main-table tbody tr td .date-ym-input.changed ::-moz-placeholder {
+            color: white !important; }
+          .main-table tbody tr td .date-ym-input.changed :-ms-input-placeholder {
+            color: white !important; }
+          .main-table tbody tr td .date-ym-input.changed ::-ms-input-placeholder {
+            color: white !important; }
+    .main-table tbody tr.nothing-found {
+      font-size: 30px;
+      font-weight: 700; }
+  .main-table .table-hover tbody tr:hover {
+    background-color: #c6d9ed; }
+
+.table-responsive {
+  overflow-x: visible; }
+
+#add-modal .modal-body label {
+  width: 100%;
+  font-weight: 700; }
+  #add-modal .modal-body label select, #add-modal .modal-body label span {
+    font-weight: 400; }
+
+.datepicker {
+  z-index: 1500 !important; }
+
+.btn-remove {
+  /*background-image: url("Images/remove-icon-white.png");*/
+  /*moved to _Layout.cshtml file to solve different path issue for both dev and prod environments*/
+  background-position: center;
+  background-size: contain;
+  width: 25px;
+  height: 25px;
+  margin-left: 10px;
+  margin-top: 2px; }
+  .btn-remove.disabled {
+    color: black !important; }
+
+.btn-add {
+  /*background-image: url("Images/plus-box-icon-white.png");*/
+  /*moved to _Layout.cshtml file to solve different path issue for both dev and prod environments*/
+  background-position: center;
+  background-size: contain;
+  width: 25px;
+  height: 25px;
+  margin-top: 7px;
+  margin-left: -2px; }
+
+.btn-table-cell-dropdown {
+  text-align: left;
+  color: black;
+  background-color: transparent;
+  border-radius: unset; }
+  .btn-table-cell-dropdown:hover {
+    color: white;
+    background-color: #85a7cb; }
+  .btn-table-cell-dropdown:focus {
+    box-shadow: none;
+    background-color: #85a7cb; }
+
+.text-input {
+  background-color: white;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  height: 37px; }
+  .text-input:focus {
+    border: solid black 1px;
+    outline: 0;
+    box-shadow: none; }
+  .text-input.text-input-cell {
+    border-radius: 0;
+    height: 31px;
+    border: none; }
+    .text-input.text-input-cell.changed {
+      background-color: #28a745;
+      color: white; }
+      .text-input.text-input-cell.changed ::placeholder {
+        color: white !important; }
+      .text-input.text-input-cell.changed ::-webkit-input-placeholder {
+        color: white !important; }
+      .text-input.text-input-cell.changed :-moz-placeholder {
+        color: white !important; }
+      .text-input.text-input-cell.changed ::-moz-placeholder {
+        color: white !important; }
+      .text-input.text-input-cell.changed :-ms-input-placeholder {
+        color: white !important; }
+      .text-input.text-input-cell.changed ::-ms-input-placeholder {
+        color: white !important; }
+  .text-input.error {
+    border-color: red; }
+
+label.error {
+  color: red; }
+
+.select2 {
+  width: 100%; }
+
+.select2-container--default .select2-selection--single.filterable-select-cell-item {
+  height: 31px;
+  border: none;
+  border-radius: unset; }
+  .select2-container--default .select2-selection--single.filterable-select-cell-item:focus {
+    outline: none; }
+  .select2-container--default .select2-selection--single.filterable-select-cell-item .select2-selection__rendered {
+    padding-top: 1px; }
+  .select2-container--default .select2-selection--single.filterable-select-cell-item .select2-selection__arrow {
+    display: none; }
+
+.select2-selection--multiple {
+  overflow: hidden !important;
+  height: auto !important; }
+
+span.sort {
+  height: 25px;
+  width: 100%;
+  cursor: pointer;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  display: block;
+  margin: -5px auto;
+  /*moved to _Layout.cshtml file to solve different paths issue for both dev and prod environments*/
+  /*&.up { 
+        background-image: url("Images/sort-up.png");
+    }
+
+    &.down {
+        background-image: url("Images/sort-down.png");
+    }
+
+    &.unsorted {
+        background-image: url("Images/sort-unsorted.png");
+    }*/ }
+  span.sort:hover {
+    background-color: skyblue; }
+
+.readonly-cell {
+  padding-top: 2px;
+  padding-left: 12px;
+  padding-right: 12px;
+  display: block;
+  white-space: nowrap;
+  cursor: pointer;
+  height: 31px; }
+  .readonly-cell.uneditable {
+    cursor: default;
+    background-color: lightgrey; }
+  .readonly-cell.changed {
+    background-color: #28a745;
+    color: white; }
+  .readonly-cell.edit {
+    display: none; }
+
+.refs {
+  display: none; }
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg); }
+  100% {
+    transform: rotate(360deg); } }
+
+.spinner {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(255, 255, 255, 0.5);
+  z-index: 9999; }
+  .spinner .spinner-inner {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 50px;
+    width: 50px;
+    animation: rotate 0.8s infinite linear;
+    border: 5px solid #85a7cb;
+    border-right-color: transparent;
+    border-radius: 100%; }

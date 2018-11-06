@@ -1,0 +1,23 @@
+﻿@using HearstMappingsEditor.Data.Models
+@using HearstMappingsEditor.Common
+
+@model OrgSubordinationByDateViewModel
+
+@{
+    var notSet = Constants.NotSet;
+    var notSelected = Constants.NotSelected;
+}
+
+<tr id="@(Model.OrgSubordinationByDateID)">
+    <td class="actions-col">
+        <a class="btn btn-danger btn-sm btn-remove" data-toggle="modal" data-target="#confirmation-modal" data-confirm-text="Remove selected row?" data-confirm-btn-text="Remove" data-confirm-action="remove" data-is-table-row="1"></a>
+    </td>
+    <td><span class="readonly-cell uneditable org-subordination-by-date-id">@Model.OrgSubordinationByDateID</span></td>
+    <td><span class="readonly-cell all-org-structure" data-select="all-org-structure" data-val="@Model.AllOrgStructureID">@(string.IsNullOrEmpty(Model.AllOrgStructure) ? notSelected : Model.AllOrgStructure)</span></td>
+    <td><span class="readonly-cell company" data-select="company" data-val="@Model.CompanyID">@(string.IsNullOrEmpty(Model.Company) ? notSelected : Model.Company)</span></td>
+    <td><span class="readonly-cell perimeter" data-select="perimeter" data-val="@Model.PerimeterID">@(string.IsNullOrEmpty(Model.Perimeter) ? notSelected : Model.Perimeter)</span></td>
+    <td><span class="readonly-cell perimeter-law" data-select="perimeter-law" data-val="@Model.PerimeterLawID">@(string.IsNullOrEmpty(Model.PerimeterLaw) ? notSelected : Model.PerimeterLaw)</span></td>
+    <td><input class="form-control date-ym-input date-start" readonly data-initial="@(Model.DateStart.HasValue ? Model.DateStart.Value.ToString("MM.yyyy") : "")" placeholder="@notSet"></td>
+    <td><input class="form-control date-ym-input date-end" readonly data-initial="@(Model.DateEnd.HasValue ? Model.DateEnd.Value.ToString("MM.yyyy") : "")" placeholder="@notSet"></td>
+    <td><span class="readonly-cell create-date uneditable">@(Model.CreateDate.HasValue ? Model.CreateDate.Value.ToString("yyyy.MM.dd HH:mm") : notSet)</span></td>
+</tr>

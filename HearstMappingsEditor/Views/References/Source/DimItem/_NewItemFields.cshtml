@@ -1,0 +1,35 @@
+﻿@using HearstMappingsEditor.Models
+
+@model DimItemRefs
+
+<label for="nm-uan">
+    UAN
+    <input id="nm-uan" type="text" class="form-control text-input uan new" placeholder="UAN" maxlength="200" name="uan">
+</label>
+<label for="nm-wgo">
+    WGO
+    <input id="nm-wgo" type="text" class="form-control text-input wgo new" placeholder="WGO" maxlength="32">
+</label>
+<label for="nm-ic3p">
+    Ic3p
+    <input id="nm-ic3p" type="text" class="form-control text-input ic3p new" placeholder="Ic3p" maxlength="2">
+</label>
+<label for="nm-item-sign">
+    ItemSign
+    <select class="filterable-select item-sign new" id="nm-item-sign">
+        @foreach (var sign in Model.Signs)
+        {
+            <option value="@sign">@sign</option>
+        }
+    </select>
+</label>
+<label for="nm-sign-mr">
+    SignMR
+    <select class="filterable-select sign-mr new" id="nm-sign-mr">
+        @foreach (var sign in Model.Signs)
+        {
+            <option value="@sign">@sign</option>
+        }
+    </select>
+</label>
+

@@ -1,0 +1,79 @@
+﻿@using HearstMappingsEditor.Models
+@using HearstMappingsEditor.Common
+@using HearstMappingsEditor.Data.Models
+
+@model ReferencesExtendedFilterableViewModel<OrgSubordinationByDateViewModel, OrgSubordinationByDateFilter, OrgSubordinationByDateRefs>
+
+@{
+    ViewBag.Title = "OrgSubordinationByDate Reference";
+    var controller = "OrgSubordinationByDate";
+    var notSelected = Constants.NotSelected;
+}
+
+@section filters {
+    @{Html.RenderPartial("_Filters", Model.Refs);}
+}
+
+@section columnTitles {
+    <th>ID</th>
+    <th>AllOrgStructure</th>
+    <th>Company</th>
+    <th>Perimeter</th>
+    <th>PerimeterLaw</th>
+    <th>DateStart</th>
+    <th>DateEnd</th>
+    <th>CreateDate</th>
+}
+
+@section items {
+    @{Html.RenderPartial("_List", Model.ReferenceItems);}
+}
+
+@section newItemFields {
+    @{Html.RenderPartial("_NewItemFields", Model.Refs);}
+}
+
+@section refs {
+    <select class="filterable-select all-org-structure">
+        <option value="null">@notSelected</option>
+        @foreach (var item in Model.Refs.DimAllOrgStructures)
+        {
+            <option value="@item.AllOrgStructureID">@item.AllOrgStructure</option>
+        }
+    </select>
+    <select class="filterable-select company">
+        @foreach (var item in Model.Refs.DimCompanies)
+        {
+            <option value="@item.CompanyID">@($"{item.CompanyCode} ({item.CompanyDesc})")</option>
+        }
+    </select>
+    <select class="filterable-select perimeter">
+        <option value="null">@notSelected</option>
+        @foreach (var item in Model.Refs.DimPerimeters)
+        {
+            <option value="@item.PerimeterID">@($"{item.PerimeterCode} ({item.PerimeterDesc})")</option>
+        }
+    </select>
+    <select class="filterable-select perimeter-law">
+        <option value="null">@notSelected</option>
+        @foreach (var item in Model.Refs.DimPerimeterLaws)
+        {
+            <option value="@item.PerimeterLawID">@($"{item.PerimeterLawCode} ({item.PerimeterLawDesc})")</option>
+        }
+    </select>
+}
+
+@section scripts {
+    @Scripts.Render("~/bundles/refs")
+    <script>
+        var saveUrl = '@(Url.Action("Save", controller))';
+        var getListUrl = '@(Url.Action("GetList", controller))';
+        var getListItemUrl = '@(Url.Action("GetListItem", controller))';
+        var exportUrl = '@(Url.Action("Export", controller))';
+        var excelFileName = '@(Constants.ExportToExcelOrgSubordinationByDateFileName)';
+        var initialLoadPageSize = @Model.InitialLoadPageSize;
+        var pageSize = @Model.PageSize;
+        @(string.IsNullOrEmpty(Model.Error)?"": $"showNotification('Error', '{Model.Error}');")
+    </script>
+    @Scripts.Render("~/bundles/refs/source/orgSubordinationByDate")
+}

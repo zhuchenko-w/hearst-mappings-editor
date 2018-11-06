@@ -1,0 +1,106 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2027
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HearstMappingsEditor", "HearstMappingsEditor\HearstMappingsEditor.csproj", "{DAB76E6B-36D9-4F95-9EEE-92D94789DB9E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HearstMappingsEditor.Data", "HearstMappingsEditor.Data", "{DA5EA416-145E-455B-BE3D-97008675E21B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HearstMappingsEditor.Data.Models", "HearstMappingsEditor.Data.Models\HearstMappingsEditor.Data.Models.csproj", "{9DCEFD42-4057-4B60-BD2B-3906883C460F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HearstMappingsEditor.Data.Context", "HearstMappingsEditor.Data.Context\HearstMappingsEditor.Data.Context.csproj", "{CD592AFF-BCB9-4AF7-A56D-23F3CC5340F7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HearstMappingsEditor.Data.Repository.Ef", "HearstMappingsEditor.Data.Repository.Ef\HearstMappingsEditor.Data.Repository.Ef.csproj", "{DF9F9C3D-7EAE-4B95-9991-BD58E76A9FA1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HearstMappingsEditor.Data.Repository.Interfaces", "HearstMappingsEditor.Data.Repository.Interfaces\HearstMappingsEditor.Data.Repository.Interfaces.csproj", "{8FC43E73-02B0-43B3-8BC5-D2DC6D6BDDA5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HearstMappingsEditor.Common", "HearstMappingsEditor.Common\HearstMappingsEditor.Common.csproj", "{627E8472-70C4-439C-BE06-350AAED9652D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{289906FC-4BFC-4237-8732-D1C66734B0D9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HearstMappingsEditor.Common.Interfaces", "HearstMappingsEditor.Common.Interfaces\HearstMappingsEditor.Common.Interfaces.csproj", "{1FE93554-901A-45AF-9A21-8D5031B23586}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DAB76E6B-36D9-4F95-9EEE-92D94789DB9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DAB76E6B-36D9-4F95-9EEE-92D94789DB9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DAB76E6B-36D9-4F95-9EEE-92D94789DB9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DAB76E6B-36D9-4F95-9EEE-92D94789DB9E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9DCEFD42-4057-4B60-BD2B-3906883C460F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9DCEFD42-4057-4B60-BD2B-3906883C460F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9DCEFD42-4057-4B60-BD2B-3906883C460F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9DCEFD42-4057-4B60-BD2B-3906883C460F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD592AFF-BCB9-4AF7-A56D-23F3CC5340F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD592AFF-BCB9-4AF7-A56D-23F3CC5340F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD592AFF-BCB9-4AF7-A56D-23F3CC5340F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD592AFF-BCB9-4AF7-A56D-23F3CC5340F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF9F9C3D-7EAE-4B95-9991-BD58E76A9FA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF9F9C3D-7EAE-4B95-9991-BD58E76A9FA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF9F9C3D-7EAE-4B95-9991-BD58E76A9FA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF9F9C3D-7EAE-4B95-9991-BD58E76A9FA1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8FC43E73-02B0-43B3-8BC5-D2DC6D6BDDA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FC43E73-02B0-43B3-8BC5-D2DC6D6BDDA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FC43E73-02B0-43B3-8BC5-D2DC6D6BDDA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FC43E73-02B0-43B3-8BC5-D2DC6D6BDDA5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{627E8472-70C4-439C-BE06-350AAED9652D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{627E8472-70C4-439C-BE06-350AAED9652D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{627E8472-70C4-439C-BE06-350AAED9652D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{627E8472-70C4-439C-BE06-350AAED9652D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1FE93554-901A-45AF-9A21-8D5031B23586}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FE93554-901A-45AF-9A21-8D5031B23586}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FE93554-901A-45AF-9A21-8D5031B23586}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FE93554-901A-45AF-9A21-8D5031B23586}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9DCEFD42-4057-4B60-BD2B-3906883C460F} = {DA5EA416-145E-455B-BE3D-97008675E21B}
+		{CD592AFF-BCB9-4AF7-A56D-23F3CC5340F7} = {DA5EA416-145E-455B-BE3D-97008675E21B}
+		{DF9F9C3D-7EAE-4B95-9991-BD58E76A9FA1} = {DA5EA416-145E-455B-BE3D-97008675E21B}
+		{8FC43E73-02B0-43B3-8BC5-D2DC6D6BDDA5} = {DA5EA416-145E-455B-BE3D-97008675E21B}
+		{627E8472-70C4-439C-BE06-350AAED9652D} = {289906FC-4BFC-4237-8732-D1C66734B0D9}
+		{1FE93554-901A-45AF-9A21-8D5031B23586} = {289906FC-4BFC-4237-8732-D1C66734B0D9}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4036B25F-B97A-4120-9B13-C172B43410D4}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 8
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://dis.hfm.ru:8080/tfs/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = HearstMappingsEditor\\HearstMappingsEditor.csproj
+		SccProjectName1 = HearstMappingsEditor
+		SccLocalPath1 = HearstMappingsEditor
+		SccProjectUniqueName2 = HearstMappingsEditor.Data.Models\\HearstMappingsEditor.Data.Models.csproj
+		SccProjectTopLevelParentUniqueName2 = HearstMappingsEditor.sln
+		SccProjectName2 = HearstMappingsEditor.Data.Models
+		SccLocalPath2 = HearstMappingsEditor.Data.Models
+		SccProjectUniqueName3 = HearstMappingsEditor.Data.Context\\HearstMappingsEditor.Data.Context.csproj
+		SccProjectTopLevelParentUniqueName3 = HearstMappingsEditor.sln
+		SccProjectName3 = HearstMappingsEditor.Data.Context
+		SccLocalPath3 = HearstMappingsEditor.Data.Context
+		SccProjectUniqueName4 = HearstMappingsEditor.Data.Repository.Ef\\HearstMappingsEditor.Data.Repository.Ef.csproj
+		SccProjectTopLevelParentUniqueName4 = HearstMappingsEditor.sln
+		SccProjectName4 = HearstMappingsEditor.Data.Repository.Ef
+		SccLocalPath4 = HearstMappingsEditor.Data.Repository.Ef
+		SccProjectUniqueName5 = HearstMappingsEditor.Data.Repository.Interfaces\\HearstMappingsEditor.Data.Repository.Interfaces.csproj
+		SccProjectTopLevelParentUniqueName5 = HearstMappingsEditor.sln
+		SccProjectName5 = HearstMappingsEditor.Data.Repository.Interfaces
+		SccLocalPath5 = HearstMappingsEditor.Data.Repository.Interfaces
+		SccProjectUniqueName6 = HearstMappingsEditor.Common\\HearstMappingsEditor.Common.csproj
+		SccProjectTopLevelParentUniqueName6 = HearstMappingsEditor.sln
+		SccProjectName6 = HearstMappingsEditor.Common
+		SccLocalPath6 = HearstMappingsEditor.Common
+		SccProjectUniqueName7 = HearstMappingsEditor.Common.Interfaces\\HearstMappingsEditor.Common.Interfaces.csproj
+		SccProjectTopLevelParentUniqueName7 = HearstMappingsEditor.sln
+		SccProjectName7 = HearstMappingsEditor.Common.Interfaces
+		SccLocalPath7 = HearstMappingsEditor.Common.Interfaces
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,17 @@
+﻿@using HearstMappingsEditor.Data.Models
+
+<tr class="filters">
+    <th class="actions-col"></th>
+    <th></th>
+    <th><input type="text" class="form-control text-filter text-input company-code" placeholder="Any" data-previous-val=""></th>
+    <th><input type="text" class="form-control text-filter text-input copmany-desc" placeholder="Any" data-previous-val=""></th>
+    <th></th>
+</tr>
+
+<tr>
+    <th class="actions-col"></th>
+    <th><span class="sort unsorted" data-sort-type="@((int)DimCompanySortTypes.CompanyID)"></span></th>
+    <th><span class="sort unsorted" data-sort-type="@((int)DimCompanySortTypes.CompanyCode)"></span></th>
+    <th><span class="sort unsorted" data-sort-type="@((int)DimCompanySortTypes.CompanyDesc)"></span></th>
+    <th><span class="sort unsorted" data-sort-type="@((int)DimCompanySortTypes.CreateDate)"></span></th>
+</tr>

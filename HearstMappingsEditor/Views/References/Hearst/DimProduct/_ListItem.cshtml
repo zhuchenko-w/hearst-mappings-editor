@@ -1,0 +1,48 @@
+﻿@using HearstMappingsEditor.Data.Models
+@using HearstMappingsEditor.Common
+
+@model DimProduct
+
+@{
+    var notSet = Constants.NotSet;
+}
+
+<tr id="@(Model.ProductID)">
+    <td class="actions-col">
+        <a class="btn btn-danger btn-sm btn-remove" data-toggle="modal" data-target="#confirmation-modal" data-confirm-text="Remove selected row?" data-confirm-btn-text="Remove" data-confirm-action="remove" data-is-table-row="1"></a>
+    </td>
+    <td><span class="readonly-cell uneditable product-id">@Model.ProductID</span></td>
+    <td>
+        @Html.EditorFor(p => p.ProductDesc,
+                      new
+                      {
+                          htmlAttributes = new
+                          {
+                              @Value = Model.ProductDesc,
+                              @class = "form-control text-input text-input-cell product-desc",
+                              @type = "text",
+                              maxlength = "255",
+                              placeholder = notSet,
+                              data_initial = Model.ProductDesc,
+                              data_val = Model.ProductDesc
+                          }
+                      })
+    </td>
+    <td>
+        @Html.EditorFor(p => p.ProductCode,
+                      new
+                      {
+                          htmlAttributes = new
+                          {
+                              @Value = Model.ProductCode,
+                              @class = "form-control text-input text-input-cell product-code",
+                              @type = "text",
+                              maxlength = "10",
+                              placeholder = notSet,
+                              data_initial = Model.ProductCode,
+                              data_val = Model.ProductCode
+                          }
+                      })
+    </td>
+    <td><span class="readonly-cell create-date uneditable">@(Model.CreateDate.HasValue ? Model.CreateDate.Value.ToString("yyyy.MM.dd HH:mm") : notSet)</span></td>
+</tr>

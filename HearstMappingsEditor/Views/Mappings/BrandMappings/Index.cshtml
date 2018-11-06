@@ -1,0 +1,59 @@
+﻿@using HearstMappingsEditor.Models
+@using HearstMappingsEditor.Common
+@using HearstMappingsEditor.Data.Models
+
+@model MappingFilterableViewModel<BrandMappingViewModel, BrandMappingFilter, BrandMappingRestriction, BrandMappingRefs>
+
+@{
+    ViewBag.Title = "Brand Mapping";
+    var controller = "BrandMappings";
+}
+
+@section filters {
+    @{Html.RenderPartial("_Filters", Model.Refs);}
+}
+
+@section columnTitles {
+    <th style="display:none;">RowId</th>
+    <th>ProjectCode</th>
+    <th>LOBDetailCode</th>
+}
+
+@section items {
+    @{Html.RenderPartial("_List", new Tuple<IList<BrandMappingViewModel>, IList<BrandMappingRestriction>>(Model.MappingData.Mappings, Model.Restrictions));}
+}
+
+@section newItemFields {
+    @{Html.RenderPartial("_NewItemFields", Model.Refs);}
+}
+
+@section refs {
+    <select class="filterable-select brand">
+        @foreach (var item in Model.Refs.DimBrands)
+        {
+            <option value="@item.LOBDetailID">@($"{item.LOBDetailCode} ({item.LOBDetailDesc})")</option>
+        }
+    </select>
+    <select class="filterable-select project">
+        @foreach (var item in Model.Refs.DimProjects)
+        {
+            <option value="@item.ProjectID">@($"{item.ProjectCode} ({item.Description})")</option>
+        }
+    </select>
+}
+
+@section scripts {
+    @Scripts.Render("~/bundles/mapping")
+    <script>
+        var saveUrl = '@(Url.Action("Save", controller))';
+        var getListUrl = '@(Url.Action("GetList", controller))';
+        var getListItemUrl = '@(Url.Action("GetListItem", controller))';
+        var exportUrl = '@(Url.Action("Export", controller))';
+        var excelFileName = '@(Constants.ExportToExcelBrandMappingFileName)';
+        var initialSyncState = @((Model.MappingData.IsSynced).ToString().ToLower());
+        var initialLoadPageSize = @Model.InitialLoadPageSize;
+        var pageSize = @Model.PageSize;
+        @(string.IsNullOrEmpty(Model.Error)?"": $"showNotification('Error', '{Model.Error}');")
+    </script>
+    @Scripts.Render("~/bundles/mapping/brands")
+}

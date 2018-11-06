@@ -1,0 +1,74 @@
+﻿@using HearstMappingsEditor.Data.Models
+@using HearstMappingsEditor.Common
+
+@model Tuple<AccountMappingViewModel, IList<AccountMappingRestriction>>
+
+@{
+    var notSelected = Constants.NotSelected;
+}
+
+@{
+    var rowIsRemovable = true;
+    var accountGroupIdIsEditable = true;
+    var accountIdIsEditable = true;
+    var channelIdIsEditable = true;
+    var deptIdIsEditable = true;
+    var itemIdIsEditable = true;
+    var printDigitalIsEditable = true;
+    var productIdIsEditable = true;
+    var signMappingIsEditable = true;
+    var signPlIsEditable = true;
+    var restrictions = Model.Item2;
+    if (restrictions != null && Model.Item1.RowId > 0)
+    {
+        foreach (var restriction in restrictions)
+        {
+            if ((restriction.AccountGroupIdIsSet
+                        || restriction.AccountIdIsSet
+                        || restriction.ChannelIdIsSet
+                        || restriction.DeptIdIsSet
+                        || restriction.ItemIdIsSet
+                        || restriction.PrintDigitalIsSet
+                        || restriction.ProductIdIsSet
+                        || restriction.SignMappingIsSet
+                        || restriction.SignPlIsSet)
+                    && (!restriction.AccountGroupIdIsSet || restriction.AccountGroupID == Model.Item1.AccountGroupID)
+                    && (!restriction.AccountIdIsSet || restriction.AccountID == Model.Item1.AccountID)
+                    && (!restriction.ChannelIdIsSet || restriction.ChannelID == Model.Item1.ChannelID)
+                    && (!restriction.DeptIdIsSet || restriction.DeptID == Model.Item1.DeptID)
+                    && (!restriction.ItemIdIsSet || restriction.ItemID == Model.Item1.ItemID)
+                    && (!restriction.PrintDigitalIsSet || restriction.PrintDigital == Model.Item1.PrintDigital)
+                    && (!restriction.ProductIdIsSet || restriction.ProductID == Model.Item1.ProductID)
+                    && (!restriction.SignMappingIsSet || restriction.SignMapping == Model.Item1.SignMapping)
+                    && (!restriction.SignPlIsSet || restriction.SignPL == Model.Item1.SignPL))
+            {
+                rowIsRemovable = false;
+                accountGroupIdIsEditable &= !restriction.AccountGroupIdIsSet;
+                accountIdIsEditable &= !restriction.AccountIdIsSet;
+                channelIdIsEditable &= !restriction.ChannelIdIsSet;
+                deptIdIsEditable &= !restriction.DeptIdIsSet;
+                itemIdIsEditable &= !restriction.ItemIdIsSet;
+                printDigitalIsEditable &= !restriction.PrintDigitalIsSet;
+                productIdIsEditable &= !restriction.ProductIdIsSet;
+                signMappingIsEditable &= !restriction.SignMappingIsSet;
+                signPlIsEditable &= !restriction.SignPlIsSet;
+            }
+        }
+    }
+}
+
+<tr id="@Model.Item1.RowId">
+    <td class="actions-col">
+        <a class="btn btn-danger btn-sm btn-remove @(rowIsRemovable ? "" : "disabled")" data-toggle="modal" data-target="#confirmation-modal" data-confirm-text="Remove selected row?" data-confirm-btn-text="Remove" data-confirm-action="remove" data-is-table-row="1"></a>
+    </td>
+    <td><span class="readonly-cell uneditable row-id" data-val="@Model.Item1.RowId">@Model.Item1.RowId</span></td>
+    <td><span class="readonly-cell dept @(deptIdIsEditable ? "" : "uneditable")" data-select="dept" data-val="@Model.Item1.DeptID">@(string.IsNullOrEmpty(Model.Item1.Dept) ? notSelected : Model.Item1.Dept)</span></td>
+    <td><span class="readonly-cell item @(itemIdIsEditable ? "" : "uneditable")" data-select="item" data-val="@Model.Item1.ItemID">@Model.Item1.ItemUAN</span></td>
+    <td><span class="readonly-cell account-print-digital @(printDigitalIsEditable ? "" : "uneditable")" data-select="account-print-digital" data-val="@Model.Item1.PrintDigital">@Model.Item1.PrintDigital</span></td>
+    <td><span class="readonly-cell account-group @(accountGroupIdIsEditable ? "" : "uneditable")" data-select="account-group" data-val="@Model.Item1.AccountGroupID">@(string.IsNullOrEmpty(Model.Item1.AccountGroupDesc) ? notSelected : Model.Item1.AccountGroupDesc)</span></td>
+    <td><span class="readonly-cell account @(accountIdIsEditable ? "" : "uneditable")" data-select="account" data-val="@Model.Item1.AccountID">@Model.Item1.AccountCode</span></td>
+    <td><span class="readonly-cell product @(productIdIsEditable ? "" : "uneditable")" data-select="product" data-val="@Model.Item1.ProductID">@Model.Item1.ProductCode</span></td>
+    <td><span class="readonly-cell channel @(channelIdIsEditable ? "" : "uneditable")" data-select="channel" data-val="@Model.Item1.ChannelID">@Model.Item1.ChannelCode</span></td>
+    <td><span class="readonly-cell sign-mapping @(signMappingIsEditable ? "" : "uneditable")" data-select="sign-mapping" data-val="@Model.Item1.SignMapping">@(Model.Item1.SignMapping.HasValue ? Model.Item1.SignMapping.Value + "" : notSelected)</span></td>
+    <td><span class="readonly-cell sign-pl @(signPlIsEditable ? "" : "uneditable")" data-select="sign-pl" data-val="@Model.Item1.SignPL">@(Model.Item1.SignPL.HasValue ? Model.Item1.SignPL.Value + "" : notSelected)</span></td>
+</tr>

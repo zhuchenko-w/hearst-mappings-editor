@@ -1,0 +1,40 @@
+﻿@using HearstMappingsEditor.Data.Models
+@using HearstMappingsEditor.Models
+
+@model DimItemRefs
+
+<tr class="filters">
+    <th class="actions-col"></th>
+    <th></th>
+    <th><input type="text" class="form-control text-filter text-input uan" placeholder="Any" data-previous-val=""></th>
+    <th><input type="text" class="form-control text-filter text-input wgo" placeholder="Any" data-previous-val=""></th>
+    <th><input type="text" class="form-control text-filter text-input ic3p" placeholder="Any" data-previous-val=""></th>
+    <th>
+        <select data-placeholder="Any" class="filterable-select multi item-sign">
+            @foreach (var sign in Model.Signs)
+            {
+                <option value="@sign">@sign</option>
+            }
+        </select>
+    </th>
+    <th>
+        <select data-placeholder="Any" class="filterable-select multi sign-mr">
+            @foreach (var sign in Model.Signs)
+            {
+                <option value="@sign">@sign</option>
+            }
+        </select>
+    </th>
+    <th></th>
+</tr>
+
+<tr>
+    <th class="actions-col"></th>
+    <th><span class="sort unsorted" data-sort-type="@((int)DimItemSortTypes.Id)"></span></th>
+    <th><span class="sort unsorted" data-sort-type="@((int)DimItemSortTypes.UAN)"></span></th>
+    <th><span class="sort unsorted" data-sort-type="@((int)DimItemSortTypes.WGO)"></span></th>
+    <th><span class="sort unsorted" data-sort-type="@((int)DimItemSortTypes.Ic3p)"></span></th>
+    <th><span class="sort unsorted" data-sort-type="@((int)DimItemSortTypes.ItemSign)"></span></th>
+    <th><span class="sort unsorted" data-sort-type="@((int)DimItemSortTypes.SignMR)"></span></th>
+    <th><span class="sort unsorted" data-sort-type="@((int)DimItemSortTypes.CreateDate)"></span></th>
+</tr>

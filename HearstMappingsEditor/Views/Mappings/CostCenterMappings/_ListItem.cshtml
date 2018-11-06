@@ -1,0 +1,37 @@
+﻿@using HearstMappingsEditor.Data.Models
+
+@model Tuple<CostCenterMappingViewModel, IList<CostCenterMappingRestriction>>
+
+@{
+    var rowIsRemovable = true;
+    var deptIdIsEditable = true;
+    var costCenterIdIsEditable = true;
+    var printDigitalIsEditable = true;
+    var restrictions = Model.Item2;
+    if (restrictions != null && Model.Item1.RowId > 0)
+    {
+        foreach (var restriction in restrictions)
+        {
+            if ((restriction.CostCenterIdIsSet || restriction.DeptIdIsSet || restriction.PrintDigitalIsSet)
+                    && (!restriction.CostCenterIdIsSet || restriction.CostCenterID == Model.Item1.CostCenterID)
+                    && (!restriction.DeptIdIsSet || restriction.DeptID == Model.Item1.DeptID)
+                    && (!restriction.PrintDigitalIsSet || restriction.PrintDigital == Model.Item1.PrintDigital))
+            {
+                rowIsRemovable = false;
+                deptIdIsEditable &= !restriction.DeptIdIsSet;
+                costCenterIdIsEditable &= !restriction.CostCenterIdIsSet;
+                printDigitalIsEditable &= !restriction.PrintDigitalIsSet;
+            }
+        }
+    }
+}
+
+<tr id="@(Model.Item1.RowId)">
+    <td class="actions-col">
+        <a class="btn btn-danger btn-sm btn-remove @(rowIsRemovable ? "" : "disabled")" data-toggle="modal" data-target="#confirmation-modal" data-confirm-text="Remove selected row?" data-confirm-btn-text="Remove" data-confirm-action="remove" data-is-table-row="1"></a>
+    </td>
+    <td style="display:none;"><span class="readonly-cell uneditable row-id" data-val="@Model.Item1.RowId">@Model.Item1.RowId</span></td>
+    <td><span class="readonly-cell dept @(deptIdIsEditable ? "" : "uneditable")" data-select="dept" data-val="@Model.Item1.DeptID">@Model.Item1.Dept</span></td>
+    <td><span class="readonly-cell dept-print-digital @(printDigitalIsEditable ? "" : "uneditable")" data-select="dept-print-digital" data-val="@Model.Item1.PrintDigital">@(Model.Item1.PrintDigital)</span></td>
+    <td><span class="readonly-cell cost-center @(costCenterIdIsEditable ? "" : "uneditable")" data-select="cost-center" data-val="@Model.Item1.CostCenterID">@(Model.Item1.CostCenterDesc)</span></td>
+</tr>

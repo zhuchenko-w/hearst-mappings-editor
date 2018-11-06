@@ -1,0 +1,33 @@
+﻿@using HearstMappingsEditor.Data.Models
+
+@model Tuple<EntityMappingViewModel, IList<EntityMappingRestriction>>
+
+@{
+    var rowIsRemovable = true;
+    var perimeterIdIsEditable = true;
+    var entityIdIsEditable = true;
+    var restrictions = Model.Item2;
+    if (restrictions != null && Model.Item1.RowId > 0)
+    {
+        foreach (var restriction in restrictions)
+        {
+            if ((restriction.EntityIdIsSet || restriction.PerimeterIdIsSet)
+                && (!restriction.EntityIdIsSet || restriction.EntityID == Model.Item1.EntityID)
+                && (!restriction.PerimeterIdIsSet || restriction.PerimeterID == Model.Item1.PerimeterID))
+            {
+                rowIsRemovable = false;
+                perimeterIdIsEditable &= !restriction.PerimeterIdIsSet;
+                entityIdIsEditable &= !restriction.EntityIdIsSet;
+            }
+        }
+    }
+}
+
+<tr id="@(Model.Item1.RowId)">
+    <td class="actions-col">
+        <a class="btn btn-danger btn-sm btn-remove @(rowIsRemovable ? "" : "disabled")" data-toggle="modal" data-target="#confirmation-modal" data-confirm-text="Remove selected row?" data-confirm-btn-text="Remove" data-confirm-action="remove" data-is-table-row="1"></a>
+    </td>
+    <td style="display:none;"><span class="readonly-cell uneditable row-id" data-val="@Model.Item1.RowId">@Model.Item1.RowId</span></td>
+    <td><span class="readonly-cell perimeter @(perimeterIdIsEditable ? "" : "uneditable")" data-select="perimeter" data-val="@Model.Item1.PerimeterID">@Model.Item1.PerimeterCode</span></td>
+    <td><span class="readonly-cell entity @(entityIdIsEditable ? "" : "uneditable")" data-select="entity" data-val="@Model.Item1.EntityID">@(Model.Item1.EntityCode)</span></td>
+</tr>

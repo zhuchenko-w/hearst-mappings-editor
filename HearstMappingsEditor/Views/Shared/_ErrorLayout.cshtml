@@ -1,0 +1,22 @@
+﻿@using System.Web.Optimization
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="x-ua-compatible" content="IE=9">
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @*<link rel="shortcut icon" href="@Url.Content("~/Content/images/favicon.ico")" type="image/x-icon"/>*@
+    @Styles.Render("~/error/css")
+</head>
+<body>
+    <div class="outer">
+        <div class="middle">
+            <div class="col inner">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+</body>
+</html>

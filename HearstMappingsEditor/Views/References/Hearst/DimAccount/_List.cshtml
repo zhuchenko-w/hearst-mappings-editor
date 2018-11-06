@@ -1,0 +1,17 @@
+﻿@using HearstMappingsEditor.Data.Models
+
+@model IList<DimAccount>
+
+@if (Model.Any())
+{
+    foreach (var item in Model)
+    {
+        Html.RenderPartial("_ListItem", item);
+    }
+}
+else
+{
+    <tr class="nothing-found">
+        <td colspan="5">Nothing found</td>
+    </tr>
+}

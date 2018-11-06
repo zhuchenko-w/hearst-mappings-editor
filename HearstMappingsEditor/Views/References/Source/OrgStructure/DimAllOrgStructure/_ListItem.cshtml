@@ -1,0 +1,32 @@
+﻿@using HearstMappingsEditor.Data.Models
+@using HearstMappingsEditor.Common
+
+@model DimAllOrgStructure
+
+@{
+    var notSet = Constants.NotSet;
+}
+
+<tr id="@(Model.AllOrgStructureID)">
+    <td class="actions-col">
+        <a class="btn btn-danger btn-sm btn-remove" data-toggle="modal" data-target="#confirmation-modal" data-confirm-text="Remove selected row?" data-confirm-btn-text="Remove" data-confirm-action="remove" data-is-table-row="1"></a>
+    </td>
+    <td><span class="readonly-cell uneditable all-org-structure-id">@Model.AllOrgStructureID</span></td>
+
+    <td>
+        @Html.EditorFor(p => p.AllOrgStructure,
+            new {
+                htmlAttributes = new
+                {
+                    @Value = Model.AllOrgStructure,
+                    @class = "form-control text-input text-input-cell all-org-structure",
+                    @type = "text",
+                    maxlength = "256",
+                    placeholder = notSet,
+                    data_initial = Model.AllOrgStructure,
+                    data_val = Model.AllOrgStructure
+                }
+            })
+    </td>
+    <td><span class="readonly-cell create-date uneditable">@(Model.CreateDate.HasValue ? Model.CreateDate.Value.ToString("yyyy.MM.dd HH:mm") : notSet)</span></td>
+</tr>

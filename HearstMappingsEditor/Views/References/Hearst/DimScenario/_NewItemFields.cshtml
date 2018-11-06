@@ -1,0 +1,31 @@
+﻿@using HearstMappingsEditor.Common
+@using HearstMappingsEditor.Models
+
+@model DimScenarioRefs
+
+@{
+    var notSelected = Constants.NotSelected;
+}
+
+<label for="nm-account-desc">
+    ScenarioDesc
+    <input id="nm-scenario-desc" type="text" class="form-control text-input scenario-desc new" placeholder="ScenarioDesc" maxlength="255">
+</label>
+<label for="nm-scenario-code">
+    ScenarioCode
+    <input id="nm-scenario-code" type="text" class="form-control text-input scenario-code new" placeholder="ScenarioCode" maxlength="10">
+</label>
+<label for="nm-input-code">
+    InputCode
+    <input id="nm-input-code" type="text" class="form-control text-input input-code new" placeholder="InputCode" maxlength="50">
+</label>
+<label for="nm-month-num">
+    MonthNum
+    <select class="filterable-select month-num new" id="nm-month-num">
+        <option value="null">@notSelected</option>
+        @foreach (var month in Model.MonthNums)
+        {
+            <option value="@month">@month</option>
+        }
+    </select>
+</label>

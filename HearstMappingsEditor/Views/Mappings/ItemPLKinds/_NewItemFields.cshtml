@@ -1,0 +1,38 @@
+﻿@using HearstMappingsEditor.Models
+@using HearstMappingsEditor.Common
+
+@model ItemPLKindsRefs
+
+@{
+    var notSelected = Constants.NotSelected;
+}
+
+<label for="nm-dept">
+    DeptCode
+    <select class="filterable-select dept new" id="nm-dept">
+        <option value="null">@notSelected</option>
+        @foreach (var item in Model.Depts)
+        {
+            <option value="@item.DeptID">@item.Dept</option>
+        }
+    </select>
+</label>
+<label for="nm-item">
+    ItemUAN
+    <select class="filterable-select item new" id="nm-item">
+        @foreach (var item in Model.Items)
+        {
+            <option value="@item.ItemID">@item.UAN</option>
+        }
+    </select>
+</label>
+<label for="nm-pl-kind">
+    PLKindName
+    <select class="filterable-select pl-kind new" id="nm-pl-kind">
+        @foreach (var item in Model.PLKinds)
+        {
+            <option value="@item.PLKindID">@item.PLKindName</option>
+        }
+    </select>
+</label>
+

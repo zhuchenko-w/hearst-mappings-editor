@@ -1,0 +1,64 @@
+﻿@using HearstMappingsEditor.Models
+@using HearstMappingsEditor.Data.Models
+@using HearstMappingsEditor.Common
+
+@model OrgSubordinationByDateRefs
+
+@{
+    var notSelected = Constants.NotSelected;
+}
+
+<tr class="filters">
+    <th class="actions-col"></th>
+    <th></th>
+    <th>
+        <select data-placeholder="Any" class="filterable-select multi all-org-structure">
+            <option value="null">@notSelected</option>
+            @foreach (var item in Model.DimAllOrgStructures)
+            {
+                <option value="@item.AllOrgStructureID">@item.AllOrgStructure</option>
+            }
+        </select>
+    </th>
+    <th>
+        <select data-placeholder="Any" class="filterable-select multi company">
+            @foreach (var item in Model.DimCompanies)
+            {
+                <option value="@item.CompanyID">@($"{item.CompanyCode} ({item.CompanyDesc})")</option>
+            }
+        </select>
+    </th>
+    <th>
+        <select data-placeholder="Any" class="filterable-select multi perimeter">
+            <option value="null">@notSelected</option>
+            @foreach (var item in Model.DimPerimeters)
+            {
+                <option value="@item.PerimeterID">@($"{item.PerimeterCode} ({item.PerimeterDesc})")</option>
+            }
+        </select>
+    </th>
+    <th>
+        <select data-placeholder="Any" class="filterable-select multi perimeter-law">
+            <option value="null">@notSelected</option>
+            @foreach (var item in Model.DimPerimeterLaws)
+            {
+                <option value="@item.PerimeterLawID">@($"{item.PerimeterLawCode} ({item.PerimeterLawDesc})")</option>
+            }
+        </select>
+    </th>
+    <th></th>
+    <th></th>
+    <th></th>
+</tr>
+
+<tr>
+    <th class="actions-col"></th>
+    <th><span class="sort unsorted" data-sort-type="@((int)OrgSubordinationByDateSortTypes.Id)"></span></th>
+    <th><span class="sort unsorted" data-sort-type="@((int)OrgSubordinationByDateSortTypes.AllOrgStructure)"></span></th>
+    <th><span class="sort unsorted" data-sort-type="@((int)OrgSubordinationByDateSortTypes.Company)"></span></th>
+    <th><span class="sort unsorted" data-sort-type="@((int)OrgSubordinationByDateSortTypes.Perimeter)"></span></th>
+    <th><span class="sort unsorted" data-sort-type="@((int)OrgSubordinationByDateSortTypes.PerimeterLaw)"></span></th>
+    <th><span class="sort unsorted" data-sort-type="@((int)OrgSubordinationByDateSortTypes.DateStart)"></span></th>
+    <th><span class="sort unsorted" data-sort-type="@((int)OrgSubordinationByDateSortTypes.DateEnd)"></span></th>
+    <th><span class="sort unsorted" data-sort-type="@((int)OrgSubordinationByDateSortTypes.CreateDate)"></span></th>
+</tr>

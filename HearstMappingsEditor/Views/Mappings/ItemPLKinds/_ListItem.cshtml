@@ -1,0 +1,17 @@
+﻿@using HearstMappingsEditor.Data.Models
+@using HearstMappingsEditor.Common
+
+@model Tuple<ItemPLKindsViewModel, IList<ItemPLKindsRestriction>>
+
+@{
+    var notSelected = Constants.NotSelected;
+}
+
+<tr id="@Model.Item1.RowId">
+    <td class="actions-col">
+        <a class="btn btn-danger btn-sm btn-remove" data-toggle="modal" data-target="#confirmation-modal" data-confirm-text="Remove selected row?" data-confirm-btn-text="Remove" data-confirm-action="remove" data-is-table-row="1"></a>
+    </td>
+    <td><span class="readonly-cell uneditable row-id" data-val="@Model.Item1.RowId">@Model.Item1.RowId</span></td>
+    <td><span class="readonly-cell dept" data-select="dept" data-val="@Model.Item1.DeptID">@(string.IsNullOrEmpty(Model.Item1.Dept) ? notSelected : Model.Item1.Dept)</span></td>
+    <td><span class="readonly-cell item" data-select="item" data-val="@Model.Item1.ItemID">@Model.Item1.ItemUAN</span></td>
+    <td><span class="readonly-cell pl-kind" data-select="pl-kind" data-val="@Model.Item1.PLKindID">@Model.Item1.PLKindName</span></td></tr>
